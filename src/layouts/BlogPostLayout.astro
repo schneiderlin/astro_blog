@@ -1,0 +1,31 @@
+---
+import TableOfContents from "@components/TableOfContents.astro";
+import Layout from "./Layout.astro";
+import Navbar from "@components/Navbar.astro";
+import CommandPalette from "@components/CommandPalette";
+
+const { frontmatter, headings } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <!-- 顶部导航栏 -->
+  <Navbar />
+  <div class="bg-primary-200 h-full min-h-screen">
+    <div class="p-10">
+      <!-- 标题 -->
+      <h1 class="text-5xl font-bold text-center">{frontmatter.title}</h1>
+      <!-- 描述 -->
+      <p class="text-center">{frontmatter.description}</p>
+
+      <CommandPalette client:load />
+
+      <!-- 目录 -->
+      <TableOfContents headings={headings} />
+
+      <!-- 内容 -->
+      <article class="prose p-4 min-w-[80%] mx-auto">
+        <slot />
+      </article>
+    </div>
+  </div>
+</Layout>

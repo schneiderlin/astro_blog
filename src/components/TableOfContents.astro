@@ -1,0 +1,39 @@
+---
+import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+
+const { headings } = Astro.props;
+
+export interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+function buildToc(headings: Heading[]) {
+  const toc: Heading[] = [];
+  const parentHeadings = new Map();
+  headings.forEach((h: Heading) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    if (heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+  return toc;
+}
+
+const toc = buildToc(headings);
+---
+
+<div class="border rounded-md shadow-md my-8 py-4 bg-primary-400">
+  <div class="mx-4">
+    <div class="pb-2 text-xl font-medium text-secondary-800">
+      Table of Contents
+    </div>
+    <ul>
+      {toc.map((heading: Heading) => <TableOfContentsHeading heading={heading} />)}
+    </ul>
+  </div>
+</div>
