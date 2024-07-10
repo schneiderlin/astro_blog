@@ -3,6 +3,7 @@ import TableOfContents from "@components/TableOfContents.astro";
 import Layout from "./Layout.astro";
 import Navbar from "@components/Navbar.astro";
 import CommandPalette from "@components/CommandPalette";
+import PostComment from "@components/PostComment.astro";
 
 const { frontmatter, headings } = Astro.props;
 ---
@@ -26,6 +27,8 @@ const { frontmatter, headings } = Astro.props;
       <article class="prose p-4 min-w-[80%] mx-auto">
         <slot />
       </article>
+
+      <PostComment />
     </div>
   </div>
 </Layout>
