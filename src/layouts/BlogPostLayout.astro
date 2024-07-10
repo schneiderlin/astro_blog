@@ -4,6 +4,7 @@ import Layout from "./Layout.astro";
 import Navbar from "@components/Navbar.astro";
 import CommandPalette from "@components/CommandPalette";
 import PostComment from "@components/PostComment.astro";
+import Footer from "@components/Footer.astro";
 
 const { frontmatter, headings } = Astro.props;
 ---
@@ -28,7 +29,11 @@ const { frontmatter, headings } = Astro.props;
         <slot />
       </article>
 
+      <!-- 评论 -->
       <PostComment />
+
+      <!-- 页脚 -->
+      <Footer />
     </div>
   </div>
 </Layout>
