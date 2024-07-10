@@ -25,7 +25,7 @@ trait MIso[A, B] {
 }
 ```
 
-### Iso的应用
+## Iso的应用
 假设有一个根据长度做某种计算的函数，长度单位是米
 ```
 def someFunc(length: Meter): Answer
@@ -42,7 +42,7 @@ def someFunc(length: MiliMeter): Answer = {
 这种写法需要太多overload很麻烦，并且如果有另一个函数，用的是厘米作为参数，那么又要写一堆overload和其他单位
 到厘米的转换
 
-#### Iso to the rescue
+### Iso to the rescue
 所有的长度单位，都是Isomorphism的，从米可以转换到厘米的过程没有损失任何的信息。  
 因此可以只overload一个someFunc
 ```

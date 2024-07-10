@@ -18,7 +18,11 @@ function buildToc(headings: Heading[]) {
     if (heading.depth === 2) {
       toc.push(heading);
     } else {
-      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+      if (!parentHeadings.get(heading.depth - 1)) {
+        console.log("heading.depth - 1 not found: " + heading.text);
+      } else {
+        parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+      }
     }
   });
   return toc;

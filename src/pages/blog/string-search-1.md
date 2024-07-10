@@ -6,7 +6,7 @@ category: algorithm
 author: linzihao
 ---
 
-### 暴力枚举
+## 暴力枚举
 固定input，滑动屏蔽词，每一个位置做一次对比。  
 ```
 function NaiveSearch(string s[1..n], string pattern[1..m])
@@ -21,7 +21,7 @@ function NaiveSearch(string s[1..n], string pattern[1..m])
 在这个算法里面，屏蔽词每一次只滑动一格，实际上可以一次性滑动N格。  
 一次最多跳多少格？
 
-### Boyer–Moore string-search algorithm
+## Boyer–Moore string-search algorithm
 Boyer–Moore对暴力枚举中每次只滑动一格做了改进。Boyer–Moore的特点是从屏蔽词的最后一个字符开始匹配  
 一些符号
 - P: 屏蔽词或pattern，长度是n
@@ -32,7 +32,7 @@ Boyer–Moore对暴力枚举中每次只滑动一格做了改进。Boyer–Moore
 https://people.ok.ubc.ca/ylucet/DS/BoyerMoore.html  
 P是从左往右滑动，但是对比的时候，是从P的右边开始对比  
 
-#### 滑动规则
+### 滑动规则
 滑动规则根据bad character rule和good suffix rule决定。  
 bad character rule  
 ![](/assets/boyer-moore-bad-character.png)

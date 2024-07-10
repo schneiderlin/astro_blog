@@ -7,7 +7,7 @@ tag: [6.824]
 date: "2018-11-30"
 ---
 
-## map reduce论文 ##
+## map reduce论文
 https://pdos.csail.mit.edu/6.824/papers/mapreduce.pdf
 
 map reduce流程

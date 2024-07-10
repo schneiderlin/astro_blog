@@ -5,3 +5,6 @@
 `pnpm astro add react`
 加上 react, 会自动添加依赖, 修改 tsconfig, 修改 astro 配置
 
+其他 UI 相关的依赖
+`pnpm i @headlessui/react`
+`pnpm i @heroicons/react@v1`

@@ -44,7 +44,7 @@ Kleisli是对A => F[B]做了一个包装，所以是一个data type。
 如果这个effect有一个pure方法，就可以造出一个identity的kleisili arrow
 object是type，morphism是kleisili arrow的category叫kleisili category
 
-### writer example
+## writer example
 ```
 type Writer[A] = (A, String)
 ```

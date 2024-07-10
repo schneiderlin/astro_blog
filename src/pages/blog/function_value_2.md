@@ -8,7 +8,7 @@ categories:
 date: "2018-11-29"
 ---
 
-## polymorphic function value 2 natural transformation ##
+## polymorphic function value 2 natural transformation
 在上一篇中可以看到标准的scala function value不够polymorphic，不能用来map HList。
 这一篇中介绍的方法非常有用，但是还不能完全解决问题。
 
@@ -38,7 +38,7 @@ size	(∀T) T => Int
 ```
 function-like的意思是说scala不能直接用这种形式表达generic function，这是我们需要解决的问题。
 
-### polymorphism lost, polymorphism regained ###
+### polymorphism lost, polymorphism regained
 FunctionN trait的实例在创建的时候就fixed了，而不是在apply的时候决定的。
 
 一个很自然的想法就是把type parameter从Function1中移动到apply中，使得type和enclosing trait独立。在上一次看到，polymorphic method和call site eta-expansion的组合看起来很像polymorphic function value。
@@ -177,7 +177,7 @@ scala> size(23)
 res2: Int = 0
 ```
 
-### 一大堆的suger ###
+### 一大堆的suger
 我们希望做一些语法上面的调整，把PolyFunction1变成infix notation。可以把T[X, Y]写成X T Y的形式。
 
 scala的function用了=>符号，这里用~>符号
@@ -209,7 +209,7 @@ object size extends (Id ~> Const[Int]#λ) {
 }
 ```
 
-### 像函数？ ###
+### 像函数？
 这里用了像函数而不是函数，是在强调这不是scala标准的FunctionN type，因为不能直接传入higher-order function。例如
 ```
 scala> List(1, 2, 3) map singleton
@@ -232,7 +232,7 @@ implicit def polyToMono6[F[_], G, T]
   (f: F ~> Const[G]# λ): F[T] => G = f(_)
 ```
 
-### natural transformation和他的缺陷 ###
+### natural transformation和他的缺陷
 natural transformation是functor到functor之间的mapping，polymorphic function是从F[_]到G[_]的mapping。  
 natural transformation可以看成是把一个容器里面的东西重新打包到另一个容器里面。
 在一开始的容器里面fmap然后重新打包，和重新打包后再fmap是一样的。满足naturality condition。

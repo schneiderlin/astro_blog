@@ -6,13 +6,13 @@ categories: database
 date: "2018-11-29 15:43:59 +0800"
 ---
 
-## buffer ##
+## buffer
 一般从磁盘读取数据到process中，默认都是用了buffer，可以手动关掉buffer功能，例如c的setvbuf。
 为什么需要buffer功能？
 
 disk controller读硬盘是一次读一个block的，如果一个byte一个byte的读，disk controller需要重复读一个block很多次。如果用了buffer，disk controller会把整个block的数据存在buffer里面，每一次读byte的时候直接就变成读内存，比读硬盘快很多。
 
-## out of core sorting and hashing ##
+## out of core sorting and hashing
 RAM的大小是可以放B这么多个Page
 需要处理的数据总大小是N
 
@@ -20,7 +20,7 @@ RAM的大小是可以放B这么多个Page
 因为磁盘处理速度和CPU处理速度不同，所有要有这两个buffer。
 存放数据的空间就剩下B-2个page
 
-### out-of-core sorting ###
+### out-of-core sorting
 顺序的读所有要sort的内容，一次读B个，然后在memory里面sorted，写出去。
 这样处理完之后，就有N/B个sorted block。
 
@@ -38,7 +38,7 @@ RAM的大小是可以放B这么多个Page
 N = B(B-1)，也就是sort N需要根号N的空间
 
 
-### out-of-core hashing ###
+### out-of-core hashing
 为什么要用out-of-core hashing？
 
 
@@ -55,21 +55,21 @@ N = B(B-1)，也就是sort N需要根号N的空间
 N = B(B-1)，和sort一样
 
 
-### sort和hash的对比 ###
+### sort和hash的对比
 sort和hash是dual
 sort是顺序读N，然后顺序写N/B个block，然后顺序读merge？？
 
 hash是顺序读N，然后随机的写到N/B个block中，然后顺序读每一个
 
 
-### notation ###
+### notation
 - [R], number of pages to store R
 - Pr，number of records per page of R
 - |R|，number of records in R
 
 [R] * Pr = |R|
 
-### nested loop ###
+### nested loop
 ```
 foreach record r in R
 	foreach record s in S
@@ -82,7 +82,7 @@ foreach record r in R
 
 每一个r tuple都要读一次[S]太多了
 
-### page-oriented nestled loop ###
+### page-oriented nestled loop
 ```
 foreach page br in R
 	foreach page bs in S
@@ -94,15 +94,15 @@ foreach page br in R
 
 如果内存够大，应该一次尽量读多几页的R
 
-### chunk nested loop ###
+### chunk nested loop
 一次读进B-2页的R，然后同上
 ([R] / B-2) * [S] + [R]
 
 
-## equil join 的一些优化 ##
+## equil join 的一些优化
 如果Θ是一个equality test，为什么我要扫描整个表，我可以先对要look up的表排序，然后binary search
 
-### index nested loop ###
+### index nested loop
 不需要扫描整个S，然后做θ测试了，直接通过index在S中找到符合条件的record，然后加到result中
 ```
 foreach tuple r in R
@@ -111,9 +111,9 @@ foreach tuple r in R
 ```
 |R| * cost to find maching S + [R]
 
-### sort merge join ###
+### sort merge join
 sort S, R，然后merge的时候，顺便输出
 适用于equil join
 
-### hash join ###
+### hash join
 hash 较小的S，把小的partition留在内存中，然后stream另一个，做hash的lookup

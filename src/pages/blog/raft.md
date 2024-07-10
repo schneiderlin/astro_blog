@@ -7,7 +7,7 @@ tag: [6.824]
 date: "2018-10-29"
 ---
 
-## Raft ##
+## Raft
 是一个replicate state machine的protocol。
 raft管理了用户的所有请求，形成一个log。并且保证所有的replica都同意这个log。
 执行写操作的时候，按照log的顺序执行，所以每一个replica里面的状态是一样的。
@@ -25,7 +25,7 @@ candidate往其他node发送投票信息，其他node回复投票，当一个can
 client的所有请求都发到master的log里面，当log还没commit的时候，node的内部状态保持不变。
 master把log entry发送给其他的node，当收到大多数的响应的时候，leader commit自己的log，然后通知其他人这个log commit了，这个过程叫做log replication
 
-#### leader election ####
+### leader election
 election timeout，follower经过这个timeout没有收到leader的信息，就会变成candidate。每一个节点的timeout是不一样的，一般是150ms到300ms之间的随机数。
 
 当一个节点变成candidate的时候，开始一个election term（死一个leader就更新一次leader term），自己投票给自己，然后发出request vote。
@@ -36,7 +36,7 @@ election timeout，follower经过这个timeout没有收到leader的信息，就�
 
 当network partition结束的时候，较低election term的leader会step down，因为少数的partition里面生成不了新的leader。step down只会发生在老leader被隔离成少数派了。
 
-### log replication ###
+### log replication
 client把请求写到leader的log里面。
 leader发出Append entries的消息给follower，每一个heartbeat timeout，就会发送一次。
 follower响应append entries消息。

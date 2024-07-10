@@ -53,48 +53,47 @@ while ( true )
 
 
 
-## 网络配置 ##
-公司public ip 116.22.32.181
+## 网络配置
 ISP提供的public ip是有可能变化的，除非买了static ip
 
-### default gateway ###
+### default gateway
 默认网关，局域网要给外网发消息，消息就先通过默认网关，然后发出去，接收的时候port forward?
 网关不一定要是router，也可以是一台有两个network adapter的机器，一个连内网一个连外网
 
-### port forward ###
+### port forward
 在路由器admin页面配置，也有可能叫virtual server
 port forward是固定的，NAT是动态的
 
 要长期使用port forward，就要设置一个static private ip，直接在ipv4的properties里面设置，subnet mask和gateway和之前用一样的。DNS要用外面的DNS
 
-### NAT(network address translation) ###
+### NAT(network address translation)
 局域机器和router之间通过DHCP连接
 private ip的package直接发送给外网会自动被丢，local ip是non-routable address，router有一个routable地址，NAT就是这两个地址之间的转换。
 
 NAT table就是记录消息返回之后应该交给那个local ip
 
-### DHCP（dynamic host configuration protocol） ###
+### DHCP（dynamic host configuration protocol）
 dynamic IP address server，是一个应用层协议
 DHCP客户端发送一个DHCP discover的广播包。
 DHCP服务器收到discover包之后，把未分配的IP地址放在offer包里面广播出去
 
-### ICMP ###
+### ICMP
 通知错误的时候用的协议
 
-### DNS ###
+### DNS
 如果DNS和default gateway一样，要把DNS改成外面的DNS，可以问ISP
 
 
-## 网络层和传输层的区别 ##
+## 网络层和传输层的区别
 ![](https://user-gold-cdn.xitu.io/2017/12/13/1604f6eba3aa2f38?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 传输层是end to end的，网络层是中间的所有路由器都要用的
 
-## TCP ##
+## TCP
 TCP的可靠性是指在每一条消息发送成功后都会带一个ACK
 
 TCP有一个缓冲区，在收到ACK之前发出去的内容会存在缓冲区里面，收到ACK的时候才清除
 
-### 分片 ###
+### 分片
 分片是在IP协议里面处理的，因为离链路层最近
 链路层对dataframe的长度有一个MTU的限制，每一个节点的MTU都不一样，所以分片可能发生在中间路由/源主机上
 
@@ -102,7 +101,7 @@ TCP里面有MSS（maximum segment size），IP是因为MTU的限制被动分片�
 
 TCP的keepAlive是操作系统负责响应的
 
-### 交互数据流和成块数据流 ###
+### 交互数据流和成块数据流
 交互数据流收到消息不马上发ack，等一段时间，如果有其他内容，跟ACK合并发送。
 
 Nagle算法，同一时间只能存在一个没有ack的分组。其他分组不会发送出去，先堆积起来等到ack收到了再一起发。提高了payload占比

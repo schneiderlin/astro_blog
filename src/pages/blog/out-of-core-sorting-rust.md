@@ -8,7 +8,7 @@ author: linzihao
 
 这篇文章通过实现out of core算法，熟悉rust关于硬盘IO的操作。  
 
-### out of core 算法简介
+## out of core 算法简介
 当需要sort的数据不能全部放在内存里面的时候，就需要用到out of core sorting算法。  
 先定义几个符号
 - B: 内存中可以存放的Page数量
@@ -27,10 +27,10 @@ author: linzihao
 硬盘IO是最慢的，所以要优先减少phase的数量。   
 out of core还可以推广到其他的外部储存设备，例如sort网络上的数据，网络IO也是很慢，需要尽量减少。  
 
-### MVP(minimal viable product)
+## MVP(minimal viable product)
 首先实现一个简化版并且没有优化的out of core sorting算法  
 定义一个Sorter作为总调度，记录所有的中间文件和处理各个phase。  
-```
+```rust
 pub struct Sorter {
     filename: String,
     max_mem_size: u64,

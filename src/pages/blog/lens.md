@@ -6,7 +6,7 @@ categories: functional_programming
 date: "2018-11-22"
 ---
 
-## Lens, getter/setter the functional way ##
+## Lens, getter/setter the functional way
 在OOP和FP中，一个type里面往往包含了另一个type。
 
 在OOP中，要获取和修改内部的值，需要用外部提供的getter和setter方法。
@@ -28,17 +28,17 @@ trait Lens[S, A] {
 }
 ```
 
-### modifyOption和modifyList其实是modifyF ###
+### modifyOption和modifyList其实是modifyF
 观察发现，modifyOption和modifyList的实现方式是完全一样的。
 作为一个FP programmer，可以发现只要f返回的是一个Functor[_]，实现方式都是一样的。
 ```
 def modifyF[F[_] : Functor](s: S)(f: A => F[A]): F[S] =
     f(get(s)).map(a => set(s, a))
 ```
-### modify其实是modifyF ###
+### modify其实是modifyF
 看modifyF和modify的区别，可以发现modify就是modify Id functor。
 
-### set其实是modify ###
+### set其实是modify
 看set和modify的区别，可以把set看成是modify传入了一个
 ```
 f = () => s
@@ -61,7 +61,7 @@ trat Lens[S, A] {
 }
 ```
 
-## 为一个case class实现Lens ##
+## 为一个case class实现Lens
 现在有一个case class Person
 ```
 case class Person(name: String)
@@ -82,7 +82,7 @@ implicit val personLens = new Lens[Person, String] {
 注意modifyF的实现，首先通过f获得了一个F[A]。
 然后把这个F[A] map 成一个F[S]返回。
 
-### get也可以用modifyF表示 ###
+### get也可以用modifyF表示
 用modifyF实现get的关键，就是要找到一个合适的F[_]。
 
 1. 在modifyF中，f拿到一个A（这个就是要get的），然后把这个A变成了F[A]。
@@ -95,7 +95,7 @@ val fa = f(s.name)
 2. modifyF最后返回的是一个F[S]，因此在F[A] map 到F[S]的过程中，储存的信息不能丢失
 3. 并且要能从F[S]中提取出A
 
-#### 这个F[_]是什么？ ####
+#### 这个F[_]是什么？
 在上面的3条中，第2条是最有约束力，提供了最多信息的。
 map不改变任何内容的functor...这个F[_]是Const[A, ?]!
 ```

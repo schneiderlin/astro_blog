@@ -14,7 +14,7 @@ natural transformation。
 假如在某个项目中，同时用了Monix的Task，scala collection的Future/Promise，java的CompletableFuture，
 想要在这些容器之间转换，就需要用到natural transformation。   
 
-### 如何实现在functor之间转换
+## 如何实现在functor之间转换
 用一个Free type class，Free像其他的functor一样，都有一个map方法，不过这个map方法不是马上执行的，
 而是有一个延迟(more on this later)。  
 ```
@@ -59,7 +59,7 @@ object idInterpreter {
 回到最开始的问题，如果要把Future转换成Promise，可以把Future[A]包装成一个Free[Future, A]。
 然后用一个PromiseInterpreter把Free转换成Promise
 
-### cats中的functionK
+## cats中的functionK
 functionK是higher-kind-function，跟natural transformation是同一个概念，scalaz里面叫natural transformation。   
 cats文档里面用了一个DSL的例子，在这个例子中，是要把DSL(KVStoreA)包装成Free[KVStoreA, A],  
 然后把这个Free转换成Id/Future   

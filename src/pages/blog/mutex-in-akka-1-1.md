@@ -38,7 +38,7 @@ III. 如果每一个拿资源的都会逐渐释放，那么所有请求都会逐
 但是在分布式环境中，并不是每一个节点的物理时钟都是同步的，如果有一个节点时钟稍快，那么这个
 节点更有可能抢占资源。所以在分布式环境中不能用物理时钟，要用logical clock
 
-### 用akka重新描述问题
+## 用akka重新描述问题
 在这里每一个进程都是一个Process Actor，进程运行的过程中，偶尔会需要请求资源。
 
 > 为了方便测试，这里写成一旦Process Actor收到ClientRequest消息，就请求资源。
@@ -47,7 +47,7 @@ III. 如果每一个拿资源的都会逐渐释放，那么所有请求都会逐
 
 在测试的时候，往Process Actor发送ClientRequest消息来模拟进程需要资源。
 
-```
+```scala
 case object ClientRequest
 
 class Process(priority: Int) extends Actor {
@@ -70,12 +70,12 @@ class Process(priority: Int) extends Actor {
 }
 ```
 Request消息是通知其他节点，“我在时间点？请求资源”
-```
+```scala
 case class Request(actor: ActorRef, timestamp: Timestamp)
 ```
 peers是所有的其他节点，这里不考虑有节点加入或离开的情况，专注分布式锁协议
 因此peers是提前固定的，在测试开始之前，生成了所有的节点 Set(所有的节点)
-```
+```scala
 case class SetPeers(peers: Set[ActorRef])
 
 def receive: Receive = {
@@ -87,7 +87,7 @@ def receive: Receive = {
 ```
 
 当达成共识之后，用一个println模拟某个进程获取到了资源
-```
+```scala
 def tryGetResource(): Unit = {
     if (canGetResource) {
       isHoldingResource = true

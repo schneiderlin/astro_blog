@@ -6,9 +6,8 @@ categories: functional_programming
 date: "2018-11-22"
 ---
 
-## applicative functor ##
 applicative functor是多了ap和pure方法的functor
-```
+```scala
 trait Applicative[F[_]] extends Functor[F] {
   def ap[A, B](ff: F[A => B])(fa: F[A]): F[B]
 
@@ -24,15 +23,15 @@ ap是把一个包装起来的函数ff，应用到一个包装起来的fa上，�
 
 product和ap提供了两种直观的方式看applicative。
 
-### product ###
-```
+## product
+```scala
 def product[A, B](fa: F[A], fb: F[B]): F[(A, B)]
 def map[A, B](fa: F[A])(f: A => B): F[B]
 ```
 product就是把两个包装起来的值a和b，合在一起变成(a, b)。
 
 来看一个具体的例子，是可以把包装里面的内容合在一起的
-```
+```scala
 implicit def applicativeForEither[L]: Applicative[Either[L, ?]] = new Applicative[Either[L, ?]] {
   def product[A, B](fa: Either[L, A], fb: Either[L, B]): Either[L, (A, B)] = (fa, fb) match {
     case (Right(a), Right(b)) => Right((a, b))
@@ -59,11 +58,11 @@ applicative需要满足
 	- fa.product(pure(())) ~ fa
 	- fa.product(pure(())).map(_._1) = fa
 
-## functor, applicative, monad ##
+## functor, applicative, monad
 functor管理的是单个effect，applicative是管理多个不相关的effect，monad是管理一串相互关联的effect
 
 要写一个验证表单的函数
-```
+```scala
 case class Form(name: String, age: Int, email: String)
 def validName(name: String): Either[NameErr, String]
 def validAge(age: Int): Either[AgeErr, Int]
@@ -71,7 +70,7 @@ def validEmail(email: String): Either[EmailErr, String]
 ```
 
 一个表单要通过验证，必须3项都通过验证，如果用monad是这样写
-```
+```scala
 def validForm(name: String, age: Int, email: String): Either[List[Err], Form] = 
 	valid
 ```

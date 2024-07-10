@@ -7,22 +7,22 @@ date: "2018-10-29"
 tag: [6.824]
 ---
 
-## GFS论文 ##
-#### 假设 ####
+## GFS论文
+### 假设
 - 文件的数量是GB级别，文件的大小是100MB左右，也支持小文件，但是没有特别优化
 - 读的结构一般是大批的streaming read和小规模的random read。stream一般是读1MB，random一般是读几kb
 - 写的结构是顺序的append，写了的基本不会改，也支持少量修改，不过不保证效率
 - 优化throughput放弃latency
 - 直接snapshot和record append
 
-#### 架构 ####
+### 架构
 cluster里面有一个master和多个chunkserver。
 文件被分为固定大小的chunk，每一个chunk都有一个全局唯一的ID，是64bit的叫做chunk handle，在master创建的时候生成。
 chunk一般replica3份放在不同的chunkserver
 meta-data的交互跟master进行，所有data的交互都直接跟chunkserver进行。
 ![](https://i.imgur.com/74uiX7h.png)
 
-#### chunk size ####
+### chunk size
 
 chunk size64MB，大chunk size的好处。
 client和master交互得到一次meta data之后，就可以和某一个chunk server建立持久的TCP连接，然后读一堆的东西。
@@ -32,11 +32,11 @@ chunk size大的坏处。
 需要用lazy space allocation
 有一些小文件可能只占一个chunk，存这个chunk的server可能会变成hot spot
 
-#### metadata ####
+### metadata
 master persistent file的namespace和file2chunk的mapping。
 chunk的位置只存在内存，master启动的时候询问chunkserver他存了什么chunk。
 
-#### consistency model ####
+### consistency model
 什么是file region？
 file region的几种状态
 - consistent，所有client不管读哪个replica都能读到一样的内容
@@ -58,4 +58,4 @@ write和record append
 
 TODO: padding是什么东西
 
-#### mutation的order ####
+### mutation的order

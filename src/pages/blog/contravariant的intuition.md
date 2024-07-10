@@ -6,7 +6,7 @@ categories: functional_programming
 date: "2018-11-19"
 ---
 
-## contravariant ##
+## contravariant
 contravariant是一个定义了contramap函数的functor
 ```
 def contramap[A, B](fa: F[A])(f: B => A): F[B]
@@ -19,7 +19,7 @@ def map[A, B](fa: F[A])(f: A => B): F[B]
 
 contravariant的例子有Show和scala.math.Ordering。
 
-### contramap的intuition ###
+### contramap的intuition
 我们都知道map可以把函数f应用到一个容器里面，这个是map的intuition。那么contramap的intuition是什么？
 
 看contramap的参数，有一个F[A]，这是一个容器里面装着A，还有一个函数B => A。很明显不能把这个函数应用进去，因为容器装的不是B。
@@ -40,17 +40,17 @@ implicit val showSalary: Show[Salary] = showMoney.contramap(_.size)
 上面两个例子中的共同点都是把一个问题化简为一个已经解决过的问题。
 当已经定义了Show[Money]之后，定义Show[Salary]时，就可以通过Salary.size方法把Salary转换成Money，这样问题就自动解决了。
 
-### contramap的应用 ###
+### contramap的应用
 scala.math.Ordering中已经有contramap了
 ```
 def by[T, S](f: T => S)(implicit ord: Ordering[S]): Ordering[T]
 ```
 这里的by，其实就是contramap
-- 要求解一个未知的问题: Ordering[T]
-- 需要一个已解决的问题: Ordering[S]
-- 还有一个转换的方法: T => S
+- 要求解一个未知的问题: `Ordering[T]`
+- 需要一个已解决的问题: `Ordering[S]`
+- 还有一个转换的方法: `T => S`
 
-## Subtyping和contravariant的关系 ##
+## Subtyping和contravariant的关系
 我们都知道liskov substitution principle，如果一个函数需要的参数是A，那么A的所有subtype B都可以作为参数传进去。
 例如getAge(human: Human)可以传getAge(man)或者getAge(woman)
 

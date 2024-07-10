@@ -23,7 +23,7 @@ Sorted String Table: 每一个segment都是sorted by key的，当query某个key�
 
 在内存里面maintain一个AVL tree之类的东西（memtable），每一个log的append操作进来都执行二叉树的插入操作，当内存的AVL元素达到一定阈值的时候，写出到磁盘，形成一个segment
 
-### SST的优化 ###
+### SST的优化
 如果query一个不存在的key，首先要查memtable，然后最近的segment...一直到最老的segment。
 可以用bloom filter判断key是否存在
 
@@ -31,7 +31,7 @@ Sorted String Table: 每一个segment都是sorted by key的，当query某个key�
 - size-tiered，小的segment优先合成大的segment
 - leveled compaction，看不懂
 
-## B-tree ##
+## B-tree
 每一个节点叫做一个page，page是固定大小的，这个大小和底层的硬件有关。page之间有引用
 一个父节点中子节点的数量叫做branching factor。
 ![](https://i.imgur.com/aXv7bbV.png)
@@ -40,7 +40,7 @@ Sorted String Table: 每一个segment都是sorted by key的，当query某个key�
 插入的时候如果没有位置了，就把插入节点从中间分开，然后插入
 ![](https://i.imgur.com/k4zYW7V.png)
 
-### B-tree的优化 ###
+### B-tree的优化
 如果在插入的时候split了page，然后还没更新parent page的时候crash了，就会出现orphan page（任何parent里面都没有他的引用）
 需要加一个redo log，或者叫write-ahead log(WAL)
 
@@ -51,7 +51,7 @@ range query比log结构慢
 加上sibling pointer可以优化一点点
 
 
-## 其他 ##
+## 其他
 不是主键怎么存
 - 拼接一个主键
 - 用inverted index那种方式，一个键后面存的是一个list
