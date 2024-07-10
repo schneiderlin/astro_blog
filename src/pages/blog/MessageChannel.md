@@ -1,6 +1,7 @@
 ---
 title: 用 MessageChannel 和 iframe 通信
 date: 2023-01-23 11:10:02
+layout: '@layouts/BlogPostLayout.astro'
 ---
 怎么用 MessageChannel, 在 parent 和 iframe 之间实现双向消息传递功能.
 首先有两个 html, index.html 里面内嵌了 iframe inner.html
