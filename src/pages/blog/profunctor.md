@@ -1,7 +1,7 @@
 ---
 layout: '@layouts/BlogPostLayout.astro'
 title: "Profunctor"
-date: "2018-12-05 10:01:09 +0800"
+date: "2018-12-05"
 auther: linzihao
 category: functional_programming
 ---

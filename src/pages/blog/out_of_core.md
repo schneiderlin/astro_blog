@@ -3,7 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: "sort/hash超出内存大小如何处理"
 author: linzihao
 categories: database
-date: "2018-11-29 15:43:59 +0800"
+date: "2018-11-29"
 ---
 
 ## buffer

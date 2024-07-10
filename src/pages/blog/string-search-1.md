@@ -1,7 +1,7 @@
 ---
 layout: '@layouts/BlogPostLayout.astro'
 title: "string search algorithm #1: 暴力枚举和Boyer–Moore算法"
-date: "2018-12-07 15:43:59 +0800"
+date: "2018-12-07"
 category: algorithm
 author: linzihao
 ---

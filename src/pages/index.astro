@@ -9,23 +9,36 @@ const allPosts = await Astro.glob("./blog/*.md");
   <Navbar />
   <div class="bg-primary-200 h-full min-h-screen">
     {
-      allPosts.map((post) => {
-        return (
-          <>
-            <a
-              href={post.url}
-              class="block mx-auto max-w-lg mb-2 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-            >
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {post.frontmatter.title}
-              </h5>
-              <p class="font-normal text-gray-700 dark:text-gray-400">
-                {/* 加上描述, 可以用 AI 生成? */}
-              </p>
-            </a>
-          </>
-        );
-      })
+      allPosts
+        .sort((a, b) => {
+          // sort by date
+          const result =
+            (new Date(b.frontmatter.date) as any) -
+            (new Date(a.frontmatter.date) as any);
+          return result;
+        })
+        .map((post) => {
+          return (
+            <>
+              <a
+                href={post.url}
+                class="block mx-auto max-w-lg mb-2 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+              >
+                {/* 标题 */}
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {post.frontmatter.title}
+                </h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">
+                  {/* 加上描述, 可以用 AI 生成? */}
+                </p>
+                {/* 日期 */}
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  {post.frontmatter.date}
+                </p>
+              </a>
+            </>
+          );
+        })
     }
   </div>
 </Layout>

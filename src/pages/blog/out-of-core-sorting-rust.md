@@ -1,7 +1,7 @@
 ---
 layout: '@layouts/BlogPostLayout.astro'
 title: "out of core sorting, rust实现"
-date: "2018-12-07 11:34:56 +0800"
+date: "2018-12-07"
 category: rust
 author: linzihao
 ---

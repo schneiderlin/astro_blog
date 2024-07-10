@@ -3,7 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: "数据库的储存方式"
 author: linzihao
 categories: database
-date: "2018-08-30 15:43:59 +0800"
+date: "2018-08-30"
 ---
 
 ## Log

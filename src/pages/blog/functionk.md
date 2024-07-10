@@ -3,7 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: "free functor/monad"
 author: linzihao
 categories: functional_programming
-date: "2019-01-02 11:03:38 +0800"
+date: "2019-01-02"
 ---
 
 Functor可以用map改变F[_]里面的type   
@@ -17,7 +17,7 @@ natural transformation。
 ## 如何实现在functor之间转换
 用一个Free type class，Free像其他的functor一样，都有一个map方法，不过这个map方法不是马上执行的，
 而是有一个延迟(more on this later)。  
-```
+```scala
 sealed triat Free[S[_], A] {
   def map[B](f: A => B): Free[S, B] = 
     Free.Mapped(this, f)
@@ -33,7 +33,7 @@ Mapped相当于创建了一个object记下了原来的所有内容和f，并没�
 Point是最原始的状态，从来没有被map过。  
 叫Free的原因是因为他能随意转换成任意的functor，例如转化成一个Future   
 
-```
+```scala
 object futureInterpreter {
   def apply[S[_], A](free: Free[S, A]): Future[A] = 
     free match {
@@ -46,7 +46,7 @@ object futureInterpreter {
 ```
 
 例如转换成一个Id
-```
+```scala
 object idInterpreter {
   def apply[S[_], A](free: Free[S, A]): Id[A] = 
     free match {
@@ -65,7 +65,7 @@ cats文档里面用了一个DSL的例子，在这个例子中，是要把DSL(KVS
 然后把这个Free转换成Id/Future   
 
 定义DSL中所有的语法ADT
-```
+```scala
 sealed trait KVStoreA[A]
 case class Put[T](key: String, value: T) extends KVStoreA[Unit]
 case class Get[T](key: String) extends KVStoreA[Option[T]]
@@ -73,7 +73,7 @@ case class Delete(key: String) extends KVStoreA[Unit]
 ```
 
 包装成Free，这样就可以把KVStoreA转换成任意的functor
-```
+```scala
 type KVStore[A] = Free[KVStoreA, A]
 
 // Put returns nothing (i.e. Unit).
@@ -98,7 +98,7 @@ def update[T](key: String, f: T => T): KVStore[Unit] =
 
 因为KVStore是一个free monad，所以可以像monad一样compose起来，实际上是记录了原始的信息和所有的
 map/flatMap方法。
-```
+```scala
 def program: KVStore[Option[Int]] =
   for {
     _ <- put("wild-cats", 2)
@@ -110,7 +110,7 @@ def program: KVStore[Option[Int]] =
 ```
 
 最后可以用compiler(interpreter)把Free monad转换成任意的monad
-```
+```scala
 def impureCompiler: KVStoreA ~> Id  =
   new (KVStoreA ~> Id) {
 
@@ -137,7 +137,7 @@ def impureCompiler: KVStoreA ~> Id  =
 
 Free monad还有一个延迟执行的功能，当写program的时候，没有实际的side-effect发生。  
 只有在foldMap了之后，才有side-effect
-```
+```scala
 // S[_]是KVStoreA[_], M[_]是Id[_]
 // 把一个S[Option[Int]]转换成了M[Option[Int]]
 val result: Option[Int] = program.foldMap(impureCompiler)
