@@ -34,6 +34,9 @@ plugins: [
 ```
 现在多了一个 utility class prose 可以用了
 
+图片用了 astro 的 Image component 做自动优化, 因为用的是 pnpm, 不会自动安装额外的依赖, 需要手动装一下
+`pnpm add sharp`
+
 ## google analytic
 
 ## 评论系统
