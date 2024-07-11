@@ -38,6 +38,29 @@ plugins: [
 `pnpm add sharp`
 
 ## google analytic
+`pnpm astro add partytown`
+需要用到 partytown, partytown 是用来懒加载第三方 script 的, 可以优化加载速度
+
+去 google analytic 创建个媒体资源, 会拿到对应的 gtag id. 
+替换到 GoogleAnalytic component 就可以
+```astro
+<!-- Google tag (gtag.js) -->
+<script
+  type="text/partytown"
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=tag"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "tag");
+</script>
+
+```
+
 
 ## 评论系统
 评论用的是 [giscus](https://giscus.app/zh-CN)
