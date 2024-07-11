@@ -86,3 +86,36 @@ plugins: [
         async>
 </script>
 ```
+
+## 阅读进度条
+astro component 里面可以直接写 `<script>` 和 `<style>` tag, 因此一个 component 就可以实现进度条功能
+```astro
+---
+---
+<div id="progress-bar">
+
+</div>
+<script>
+    function updateProgressBar() {
+        const {scrollTop, scrollHeight} = document.documentElement
+        const scrollPercent = `${(scrollTop / (scrollHeight - window.innerHeight)) * 100}%`
+
+        document.querySelector('#progress-bar')!.style.setProperty('--progress', scrollPercent)
+    }
+
+    document.addEventListener('scroll', updateProgressBar)
+</script>
+
+<style>
+    #progress-bar {
+        --progress: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        width: var(--progress);
+        background-color: #502020;
+    }
+</style>
+```
