@@ -1,5 +1,6 @@
 ---
 import Navbar from "@components/Navbar.astro";
+import ViewCount from "@components/ViewCount.astro";
 import Layout from "@layouts/Layout.astro";
 
 const allPosts = await Astro.glob("./blog/*.md");
@@ -35,6 +36,8 @@ const allPosts = await Astro.glob("./blog/*.md");
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                   {post.frontmatter.date}
                 </p>
+                {/* 浏览数 */}
+                {/* <ViewCount></ViewCount> */}
               </a>
             </>
           );
