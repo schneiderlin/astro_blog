@@ -5,6 +5,7 @@ import Navbar from "@components/Navbar.astro";
 import CommandPalette from "@components/CommandPalette";
 import PostComment from "@components/PostComment.astro";
 import Footer from "@components/Footer.astro";
+import ReadProgressBar from "@components/ReadProgressBar.astro";
 
 const { frontmatter, headings } = Astro.props;
 ---
@@ -12,6 +13,7 @@ const { frontmatter, headings } = Astro.props;
 <Layout title={frontmatter.title}>
   <!-- 顶部导航栏 -->
   <Navbar />
+  <ReadProgressBar></ReadProgressBar>
   <div class="bg-primary-200 h-full min-h-screen">
     <div class="p-10">
       <!-- 标题 -->
