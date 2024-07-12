@@ -119,3 +119,26 @@ astro component 里面可以直接写 `<script>` 和 `<style>` tag, 因此一个
     }
 </style>
 ```
+
+## sitemap
+`pnpm astro add sitemap`
+需要在 astro.config.js 里面写 site
+```javascript
+import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+
+export default defineConfig({
+  // ...
+  site: 'https://stargazers.club',
+  integrations: [sitemap()],
+});
+```
+
+再 npx astro build, 会打印出在哪个路径输出了 sitemap xml, 这一步只是为了检查
+在 layout 里面把 sitemap 加到 head 里面
+```astro
+<head>
+  ...
+  <link rel="sitemap" href="/sitemap-index.xml" />
+</head>
+```
