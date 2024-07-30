@@ -1,6 +1,5 @@
 ---
 import Navbar from "@components/Navbar.astro";
-import ViewCount from "@components/ViewCount.astro";
 import Layout from "@layouts/Layout.astro";
 
 const allPosts = await Astro.glob("./blog/*.md");
@@ -8,6 +7,24 @@ const allPosts = await Astro.glob("./blog/*.md");
 
 <Layout title="所有文章">
   <Navbar />
+
+  <div>
+    <a
+      href="/bahasa/bahasa_project"
+      class="block mx-auto max-w-lg mb-2 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    >
+      {/* 标题 */}
+      <h5
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        语言学习项目
+      </h5>
+      <p class="font-normal text-gray-700 dark:text-gray-400">
+        {/* 加上描述, 可以用 AI 生成? */}
+      </p>
+    </a>
+  </div>
+
   <div class="bg-primary-200 h-full min-h-screen">
     {
       allPosts

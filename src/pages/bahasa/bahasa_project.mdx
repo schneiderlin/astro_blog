@@ -1,0 +1,26 @@
+---
+layout: '@layouts/BlogPostLayout.astro'
+title: The language learning project
+---
+
+import { Image } from 'astro:assets';
+import network from '../../assets/network.png';
+
+## about
+hello, My name is ZiHao, I am from China.
+I'm currently learning English and bahasa Indonesia, and helping my friend from Indonesia to learn Mandarin.
+
+what I will do here is write down my notes during language learning, and teaching.
+hope it will help other people too.
+
+## notes
+[Section1](/bahasa/section1)
+[Section2](/bahasa/section2)
+
+## word network
+I would try to create as many links as possible. I have an idea, that each conversation's transcript, recorded and indexed, 
+so whenever click on a word, all the previous conversations contain that word can be retrieved.
+
+and it would gradually become a giant words and conversations network, It can then be visualize, maybe look like this
+<Image src={network} alt="network" width="1200" height="1200" />
+the words that has the most connection are the most frequently used word.
