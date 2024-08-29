@@ -4,6 +4,7 @@ title: "out of core sorting, rust实现"
 date: "2018-12-07"
 category: rust
 author: linzihao
+description: A Rust implementation of out-of-core sorting algorithm, demonstrating how to handle datasets larger than available memory. This post covers the basic concepts of out-of-core sorting, explains the phased approach, and provides a step-by-step implementation in Rust, focusing on disk I/O operations and memory management.
 ---
 
 这篇文章通过实现out of core算法，熟悉rust关于硬盘IO的操作。  

@@ -4,6 +4,7 @@ title: "用clojure写个编译器, part1"
 author: linzihao
 categories: compiler
 date: "2023-01-21"
+description: A tutorial series on building a compiler in Clojure, starting with simple arithmetic expressions and progressing to more complex language features, including AST visualization and compilation to stack-based VM instructions.
 ---
 
 lisp 语言的 s-expression 非常适合用来处理 AST. 并且 clojurescript 写前端很方便, 有很好的库 re-frame, 还可以利用 npm 生态里面的其他库, 例如 d3 来做可视化.  

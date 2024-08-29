@@ -3,6 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: 博客使用的技术栈
 author: linzihao
 date: "2024-07-10"
+description: An overview of the technologies and tools used to create this blog, including Astro, MDX, React, Tailwind CSS, and more.
 ---
 用的是 astro
 

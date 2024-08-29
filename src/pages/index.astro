@@ -14,14 +14,14 @@ const allPosts = await Astro.glob("./blog/*.md");
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <a
         href="/bahasa/bahasa_project"
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
       >
-        <div class="p-6">
+        <div class="p-6 flex-grow">
           <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">
             语言学习项目
           </h2>
           <p class="text-gray-600 dark:text-gray-400">
-            {/* Add a brief description here */}
+            探索语言学习的新方法和技巧，提高您的语言能力。
           </p>
         </div>
       </a>
@@ -31,15 +31,17 @@ const allPosts = await Astro.glob("./blog/*.md");
         .map((post) => (
           <a
             href={post.url}
-            class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
           >
-            <div class="p-6">
+            <div class="p-6 flex-grow">
               <h2 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                 {post.frontmatter.title}
               </h2>
               <p class="text-gray-600 dark:text-gray-400 mb-4">
-                {/* Add a brief description here */}
+                {post.frontmatter.description || "No description available"}
               </p>
+            </div>
+            <div class="px-6 pb-4 mt-auto">
               <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
                 <span>{new Date(post.frontmatter.date).toLocaleDateString()}</span>
                 {/* <ViewCount /> */}

@@ -4,6 +4,7 @@ title: "free functor/monad"
 author: linzihao
 categories: functional_programming
 date: "2019-01-02"
+description: An exploration of natural transformations between functors in functional programming, introducing the concept of Free functors and demonstrating how to implement conversions between different container types like Monix Task, Scala Future, and Java CompletableFuture.
 ---
 
 Functor可以用map改变F[_]里面的type   

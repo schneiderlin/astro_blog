@@ -4,6 +4,7 @@ title: applicative functor
 author: linzihao
 categories: functional_programming
 date: "2018-11-22"
+description: An introduction to applicative functors in functional programming, explaining their definition, methods, and properties with Scala code examples. The post covers the ap and pure methods, as well as the product-based definition of applicatives.
 ---
 
 applicative functor是多了ap和pure方法的functor

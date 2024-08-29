@@ -6,6 +6,7 @@ categories:
   - scala
     - shapeless
 date: "2018-11-29"
+description: An exploration of polymorphic function values in Scala, focusing on natural transformations. This post discusses the limitations of standard Scala function values and introduces a more flexible approach for handling polymorphic functions, particularly useful for operations on heterogeneous lists (HLists).
 ---
 
 ## polymorphic function value 2 natural transformation
