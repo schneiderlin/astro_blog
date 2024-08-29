@@ -49,21 +49,31 @@ const toc = buildToc(headings);
 
     let currentActiveIndex = 0;
 
-    headings.forEach((heading, index) => {
-      const rect = heading.getBoundingClientRect();
-      if (rect.top <= 100) {
-        currentActiveIndex = index;
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+
+    if (isAtBottom) {
+      currentActiveIndex = headings.length - 1;
+    } else {
+      headings.forEach((heading, index) => {
+        const rect = heading.getBoundingClientRect();
+        if (rect.top <= 100) {
+          currentActiveIndex = index;
+        }
+      });
+    }
+
+    tocLinks.forEach((link, index) => {
+      if (index === currentActiveIndex) {
+        link.classList.remove('text-gray-600', 'hover:text-gray-800');
+        link.classList.add('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
+      } else {
+        link.classList.remove('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
+        link.classList.add('text-gray-600', 'hover:text-gray-800');
       }
     });
-
-    tocLinks.forEach((link) => {
-      link.classList.remove('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
-      link.classList.add('text-gray-600', 'hover:text-gray-800');
-    });
-    tocLinks[currentActiveIndex]?.classList.remove('text-gray-600', 'hover:text-gray-800');
-    tocLinks[currentActiveIndex]?.classList.add('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
   }
 
   document.addEventListener('scroll', updateActiveHeading);
+  window.addEventListener('resize', updateActiveHeading);
   updateActiveHeading();
 </script>
