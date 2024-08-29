@@ -5,6 +5,7 @@ author: linzihao
 categories: distribute_system
 date: "2018-11-29"
 description: An explanation of how to implement at-most-once semantics in distributed systems, covering client-side XID usage, server-side result caching, and strategies for cache management and handling concurrent requests.
+lang: "zh"
 ---
 
 ## 如何保证at-most-once semantic

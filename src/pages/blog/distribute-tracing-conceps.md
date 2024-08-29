@@ -5,6 +5,7 @@ author: linzihao
 categories: distribute_system
 date: "2023-02-02"
 description: An overview of distributed tracing concepts, including traces, spans, and contexts, with a focus on OpenTracing standards and their applications in system monitoring and debugging.
+lang: "zh"
 ---
 
 全链路指的是从客户端发起请求开始, 到网关, 可能经过多个应用服务器, 再到数据库.

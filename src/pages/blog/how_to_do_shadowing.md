@@ -3,6 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: The Benefits and Challenges of Shadowing
 author: linzihao
 date: "2024-08-20"
+lang: "en"
 description: An exploration of shadowing as a language learning technique, discussing its effectiveness at different proficiency levels and providing practical tips for maximizing its benefits.
 ---
 

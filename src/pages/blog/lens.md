@@ -5,6 +5,7 @@ author: linzihao
 categories: functional_programming
 date: "2018-11-22"
 description: An introduction to lenses in functional programming, explaining how they serve as functional equivalents to getters and setters in object-oriented programming, with code examples in Scala.
+lang: "zh"
 ---
 
 ## Lens, getter/setter the functional way

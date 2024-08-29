@@ -8,9 +8,10 @@ import Footer from "@components/Footer.astro";
 import ReadProgressBar from "@components/ReadProgressBar.astro";
 
 const { frontmatter, headings } = Astro.props;
+const lang = frontmatter.lang || 'en';
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} lang={lang}>
   <!-- 顶部导航栏 -->
   <Navbar />
   <ReadProgressBar></ReadProgressBar>

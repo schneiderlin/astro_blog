@@ -5,6 +5,7 @@ date: "2018-12-07"
 category: algorithm
 author: linzihao
 description: An introduction to string search algorithms, focusing on the naive brute-force approach and the Boyer-Moore algorithm. This post explains the basic concepts, implementation details, and efficiency improvements of these methods for finding substrings within larger text.
+lang: "zh"
 ---
 
 ## 暴力枚举

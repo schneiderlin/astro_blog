@@ -3,6 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: ThirdTime 工作法使用一个月后的心得体会
 date: "2024-07-10"
 description: A reflection on the experience of using the ThirdTime work method for one month, discussing the challenges and achievements, and providing insights into the work method.
+lang: "zh"
 ---
 
 ThirdTime 工作法可以看作是番茄工作法的升级版, 之前在 [bilibili](https://www.bilibili.com/opus/935450195019169830) 上发过.

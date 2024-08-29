@@ -10,10 +10,10 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://linzihao.com",
   integrations: [mdx(), react(), tailwind(), partytown(), sitemap()],
-  output: "server",
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true
-    }
-  })
+  output: "static",
+  // adapter: vercel({
+  //   webAnalytics: {
+  //     enabled: true
+  //   }
+  // })
 });

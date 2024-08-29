@@ -4,6 +4,7 @@ title: "akka实现logical timestamp和分布式锁, part 1-1: 问题描述和总
 date: "2018-12-25"
 category: scala
 author: linzihao
+lang: "zh"
 description: An implementation of a distributed mutex using Akka, exploring logical timestamps and consensus algorithms. This post introduces the problem, outlines the requirements for the distributed lock, and sets up the basic Akka actor structure for the solution.
 ---
 

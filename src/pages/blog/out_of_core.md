@@ -5,6 +5,7 @@ author: linzihao
 categories: database
 date: "2018-11-29"
 description: An overview of out-of-core sorting and hashing techniques for handling datasets larger than available memory. This post explains buffer usage, the process of external sorting with multiple passes, and partitioning strategies for out-of-core hashing, including analysis of memory requirements and data size limitations.
+lang: "zh"
 ---
 
 ## buffer

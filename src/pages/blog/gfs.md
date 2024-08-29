@@ -3,6 +3,7 @@ layout: '@layouts/BlogPostLayout.astro'
 title: GFS
 author: linzihao
 categories: distribute_system
+lang: "zh"
 date: "2018-10-29"
 tag: [6.824]
 description: An analysis of the Google File System (GFS) architecture, discussing its design assumptions, chunk-based storage, metadata management, and consistency model. The post explores the benefits and drawbacks of large chunk sizes, the role of the master server, and the system's approach to data mutations and consistency.

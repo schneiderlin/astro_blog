@@ -6,6 +6,7 @@ categories: distribute_system
 tag: [6.824]
 date: "2018-10-29"
 description: An analysis of fault-tolerant virtual machine replication techniques, discussing primary-backup architectures, deterministic replay, output consistency, and failure detection mechanisms. The post also compares these approaches with log replication in the Raft consensus algorithm.
+lang: "zh"
 ---
 
 ## fault tolerance VM论文

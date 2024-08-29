@@ -5,6 +5,7 @@ date: "2018-12-05"
 auther: linzihao
 category: functional_programming
 description: An introduction to profunctors in functional programming, explaining their definition, relationship to bifunctors, and implementation in Scala. This post covers the basic structure of profunctors, their laws, and provides examples of profunctor instances like function types.
+lang: "zh"
 ---
 
 Produnctor是𝐂𝑜𝑝 × 𝐃 → 𝐒𝐞𝐭，类似bifunctor也是从一个product of category到category的mapping。
