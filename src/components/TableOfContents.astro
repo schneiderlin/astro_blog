@@ -33,10 +33,10 @@ const toc = buildToc(headings);
 
 <nav class="toc">
   <div class="sticky top-24">
-    <div class="pb-2 text-xl font-medium text-secondary-800">
+    <div class="pb-4 text-2xl font-bold text-secondary-800 font-serif">
       Table of Contents
     </div>
-    <ul>
+    <ul class="font-sans">
       {toc.map((heading: Heading) => <TableOfContentsHeading heading={heading} />)}
     </ul>
   </div>
@@ -68,15 +68,23 @@ const toc = buildToc(headings);
 <style>
   .toc a {
     display: block;
-    padding: 0.2em 0;
+    padding: 0.3em 0;
     color: #666;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s, font-weight 0.3s;
   }
 
   .toc a:hover,
   .toc a.active {
     color: #000;
-    font-weight: bold;
+    font-weight: 600;
+  }
+
+  .toc ul {
+    padding-left: 1em;
+  }
+
+  .toc > ul {
+    padding-left: 0;
   }
 </style>

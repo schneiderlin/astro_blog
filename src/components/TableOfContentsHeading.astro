@@ -2,11 +2,23 @@
 import type { Heading } from "./TableOfContents.astro";
 
 const { heading } = Astro.props;
+
+const getHeadingClasses = (depth: number) => {
+  const baseClasses = "block py-1 hover:text-secondary-800 transition-colors duration-200";
+  switch (depth) {
+    case 2:
+      return `${baseClasses} text-lg font-medium`;
+    case 3:
+      return `${baseClasses} text-base pl-4`;
+    default:
+      return `${baseClasses} text-sm pl-${(depth - 1) * 4}`;
+  }
+};
 ---
 
 <li>
-  <a href={"#" + heading.slug} class="text-xl hover:text-secondary-800">
-    {"-".repeat(heading.depth - 1) + " " + heading.text}
+  <a href={"#" + heading.slug} class={getHeadingClasses(heading.depth)}>
+    {heading.text}
   </a>
   {
     heading.subheadings.length > 0 && (
