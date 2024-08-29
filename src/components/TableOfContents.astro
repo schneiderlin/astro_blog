@@ -31,8 +31,8 @@ function buildToc(headings: Heading[]) {
 const toc = buildToc(headings);
 ---
 
-<div class="border rounded-md shadow-md my-8 py-4 bg-primary-400">
-  <div class="mx-4">
+<nav class="toc">
+  <div class="sticky top-24">
     <div class="pb-2 text-xl font-medium text-secondary-800">
       Table of Contents
     </div>
@@ -40,4 +40,43 @@ const toc = buildToc(headings);
       {toc.map((heading: Heading) => <TableOfContentsHeading heading={heading} />)}
     </ul>
   </div>
-</div>
+</nav>
+
+<script>
+  function updateActiveHeading() {
+    // console.log("update")
+    const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    const tocLinks = document.querySelectorAll('.toc a');
+
+    let currentActiveIndex = 0;
+
+    headings.forEach((heading, index) => {
+      const rect = heading.getBoundingClientRect();
+      if (rect.top <= 100) {
+        currentActiveIndex = index;
+      }
+    });
+
+    tocLinks.forEach((link) => link.classList.remove('active'));
+    tocLinks[currentActiveIndex]?.classList.add('active');
+  }
+
+  document.addEventListener('scroll', updateActiveHeading);
+  updateActiveHeading();
+</script>
+
+<style>
+  .toc a {
+    display: block;
+    padding: 0.2em 0;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .toc a:hover,
+  .toc a.active {
+    color: #000;
+    font-weight: bold;
+  }
+</style>

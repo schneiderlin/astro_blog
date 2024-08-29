@@ -15,24 +15,28 @@ const lang = frontmatter.lang || 'en';
   <!-- 顶部导航栏 -->
   <Navbar />
   <ReadProgressBar></ReadProgressBar>
-  <div class="bg-primary-200 h-full min-h-screen">
-    <div class="p-10">
+  <div class="bg-primary-200 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
       <!-- 标题 -->
-      <h1 class="text-5xl font-bold text-center">{frontmatter.title}</h1>
+      <h1 class="text-4xl font-bold text-center mb-4">{frontmatter.title}</h1>
       <!-- 描述 -->
-      <p class="text-center">{frontmatter.description}</p>
+      <p class="text-center mb-2">{frontmatter.description}</p>
       <!-- 日期 -->
-      <p class="text-center">{frontmatter.date}</p>
+      <p class="text-center mb-8">{frontmatter.date}</p>
 
       <CommandPalette client:load />
 
-      <!-- 目录 -->
-      <TableOfContents headings={headings} />
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- 目录 -->
+        <div class="md:w-1/4 md:sticky md:top-24 md:self-start">
+          <TableOfContents headings={headings} />
+        </div>
 
-      <!-- 内容 -->
-      <article class="prose p-4 min-w-[80%] mx-auto">
-        <slot />
-      </article>
+        <!-- 内容 -->
+        <article class="prose md:w-3/4">
+          <slot />
+        </article>
+      </div>
 
       <!-- 评论 -->
       <PostComment />
