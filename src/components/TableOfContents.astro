@@ -44,7 +44,6 @@ const toc = buildToc(headings);
 
 <script>
   function updateActiveHeading() {
-    // console.log("update")
     const headings = document.querySelectorAll('h2, h3, h4, h5, h6');
     const tocLinks = document.querySelectorAll('.toc a');
 
@@ -57,34 +56,14 @@ const toc = buildToc(headings);
       }
     });
 
-    tocLinks.forEach((link) => link.classList.remove('active'));
-    tocLinks[currentActiveIndex]?.classList.add('active');
+    tocLinks.forEach((link) => {
+      link.classList.remove('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
+      link.classList.add('text-gray-600', 'hover:text-gray-800');
+    });
+    tocLinks[currentActiveIndex]?.classList.remove('text-gray-600', 'hover:text-gray-800');
+    tocLinks[currentActiveIndex]?.classList.add('bg-blue-100', 'text-blue-800', 'font-bold', 'border-l-4', 'border-blue-500', 'pl-2');
   }
 
   document.addEventListener('scroll', updateActiveHeading);
   updateActiveHeading();
 </script>
-
-<style>
-  .toc a {
-    display: block;
-    padding: 0.3em 0;
-    color: #666;
-    text-decoration: none;
-    transition: color 0.3s, font-weight 0.3s;
-  }
-
-  .toc a:hover,
-  .toc a.active {
-    color: #000;
-    font-weight: 600;
-  }
-
-  .toc ul {
-    padding-left: 1em;
-  }
-
-  .toc > ul {
-    padding-left: 0;
-  }
-</style>

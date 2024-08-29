@@ -4,7 +4,7 @@ import type { Heading } from "./TableOfContents.astro";
 const { heading } = Astro.props;
 
 const getHeadingClasses = (depth: number) => {
-  const baseClasses = "block py-1 hover:text-secondary-800 transition-colors duration-200";
+  const baseClasses = "toc block py-1 hover:text-secondary-800 transition-colors duration-200";
   switch (depth) {
     case 2:
       return `${baseClasses} text-lg font-medium`;
