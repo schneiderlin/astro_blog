@@ -1,0 +1,5 @@
+I guess I should write about cursor, it really help me a lot.
+but many people already write about it, I need to find some new angle.
+- a walk through of some project using cursor?
+- can I use cursor for something other than coding?
+- cursor can use for translation line by line

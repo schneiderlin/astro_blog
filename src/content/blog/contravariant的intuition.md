@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: 各种category
 author: linzihao
-categories: functional_programming
+categories: ["scala", "functional_programming"]
 date: "2018-11-19"
 lang: "zh"
 description: An exploration of contravariant functors in functional programming, explaining their definition, intuition, and practical applications. The post covers the contramap function, compares it with covariant functors, and provides examples using Show and Ordering types in Scala.

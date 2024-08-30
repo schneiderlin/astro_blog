@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "free functor/monad"
 author: linzihao
-categories: functional_programming
+categories: ["functional_programming", "scala"]
 date: "2019-01-02"
 lang: "zh"
 description: An exploration of natural transformations between functors in functional programming, introducing the concept of Free functors and demonstrating how to implement conversions between different container types like Monix Task, Scala Future, and Java CompletableFuture.

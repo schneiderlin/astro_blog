@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "数据库的储存方式"
 author: linzihao
-categories: database
+categories: ["database"]
 date: "2018-08-30"
 lang: "zh"
 description: An overview of database storage methods, including log-structured storage, indexing techniques, Sorted String Tables (SSTs), and B-trees. The post explores the advantages of each approach and discusses optimizations for improved performance and reliability.

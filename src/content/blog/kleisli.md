@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "Kleisli"
 author: linzihao
-categories: functional_programming
+categories: ["functional_programming", "scala"]
 date: "2018-11-20"
 lang: "zh"
 description: An introduction to Kleisli arrows in functional programming, explaining how they enable composition of functions that return monadic values. The post covers the concept of Kleisli composition, its implementation in Cats, and provides examples using the Writer monad.

@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "RocketMQ 5.0 解锁任意时间延迟消息能力"
 date: "2023-02-23"
 description: An exploration of the new delay message feature in RocketMQ 5.0, discussing its implementation and how to set the precision parameter for optimal performance.

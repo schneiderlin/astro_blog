@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: lens，函数式的getter和setter
 author: linzihao
-categories: functional_programming
+categories: ["functional_programming", "scala"]
 date: "2018-11-22"
 description: An introduction to lenses in functional programming, explaining how they serve as functional equivalents to getters and setters in object-oriented programming, with code examples in Scala.
 lang: "zh"

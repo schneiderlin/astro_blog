@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "akka实现logical timestamp和分布式锁, part 1-1: 问题描述和总体框架"
 date: "2018-12-25"
 category: scala

@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "RocketMQ MQBrokerException: CODE: 14 问题排查"
 date: "2023-02-08"
 description: A detailed investigation of the MQBrokerException code 14 issue in RocketMQ, discussing the causes and solutions.

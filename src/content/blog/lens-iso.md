@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: Lens part1 - Iso
 author: linzihao
-categories: functional_programming
+categories: ["functional_programming", "scala"]
 date: "2019-04-18"
 description: An introduction to Iso, a type of lens in functional programming that represents isomorphisms between types. The post explains the concept, provides code examples in Scala, and demonstrates practical applications of Iso in handling unit conversions.
 lang: "zh"

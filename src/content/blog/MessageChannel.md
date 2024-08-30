@@ -1,7 +1,6 @@
 ---
 title: 用 MessageChannel 和 iframe 通信
 date: "2023-01-23"
-layout: '@layouts/BlogPostLayout.astro'
 description: An explanation of how to use MessageChannel for bidirectional communication between a parent page and an iframe, with code examples and step-by-step instructions.
 lang: "zh"
 ---

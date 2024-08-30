@@ -1,10 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "polymorphic function value 2"
 author: linzihao
-categories:
-  - scala
-    - shapeless
+categories: ["scala", "shapeless"]
 date: "2018-11-29"
 lang: "zh"
 description: An exploration of polymorphic function values in Scala, focusing on natural transformations. This post discusses the limitations of standard Scala function values and introduces a more flexible approach for handling polymorphic functions, particularly useful for operations on heterogeneous lists (HLists).

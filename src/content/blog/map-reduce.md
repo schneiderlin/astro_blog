@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: map reduce
 author: linzihao
-categories: distribute_system
+categories: ["distributed_system"]
 lang: "zh"
 tag: [6.824]
 date: "2018-11-30"

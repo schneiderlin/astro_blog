@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "Profunctor"
 date: "2018-12-05"
 auther: linzihao

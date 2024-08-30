@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: ThirdTime 工作法使用一个月后的心得体会
 date: "2024-07-10"
 description: A reflection on the experience of using the ThirdTime work method for one month, discussing the challenges and achievements, and providing insights into the work method.

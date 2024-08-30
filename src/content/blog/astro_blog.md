@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: 博客使用的技术栈
 author: linzihao
 date: "2024-07-10"

@@ -1,8 +1,7 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: GFS
 author: linzihao
-categories: distribute_system
+categories: ["distributed_system"]
 lang: "zh"
 date: "2018-10-29"
 tag: [6.824]

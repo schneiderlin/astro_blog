@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: The Benefits and Challenges of Shadowing
 author: linzihao
 date: "2024-08-20"

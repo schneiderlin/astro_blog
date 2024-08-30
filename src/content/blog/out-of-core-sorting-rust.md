@@ -1,5 +1,4 @@
 ---
-layout: '@layouts/BlogPostLayout.astro'
 title: "out of core sorting, rust实现"
 date: "2018-12-07"
 category: rust
