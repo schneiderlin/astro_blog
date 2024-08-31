@@ -4,10 +4,12 @@
 <div id="search"></div>
 <script>
   window.addEventListener('DOMContentLoaded', (event) => {
-    new PagefindUI({ element: '#search', 
-    processTerm: (term: string) => {
-      return term; // 这里可以帮用户分词
-    },
-    showSubResults: true });
+    new (window as any).PagefindUI({ 
+      element: '#search', 
+      processTerm: (term: string) => {
+        return term; // 这里可以帮用户分词
+      },
+      showSubResults: true 
+    });
   });
 </script>
