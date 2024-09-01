@@ -144,6 +144,45 @@ export default defineConfig({
 </head>
 ```
 
+## Open Graph
+Open Graph 是用来在社交网络上分享链接时显示的图片和描述, 用的是 [ogp.me](https://ogp.me/) 的规范
+在 https://www.opengraph.xyz/ 输入 url 可以预览这个 url 在各个社交网络上的分享效果
+
+不需要用到任何外部的工具, 每个 blog post 的 frontmatter 里面可以自己加 ogImage 和 description.
+写一个 OpenGraphTags 的 component, 在 Layout 里面引用
+
+```astro
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+const siteUrl = Astro.site ? Astro.site.href : 'https://linzihao.com/';
+---
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content={Astro.url}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+{ogImage && <meta property="og:image" content={new URL(ogImage, siteUrl)}>}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content={Astro.url}>
+<meta property="twitter:title" content={title}>
+<meta property="twitter:description" content={description}>
+{ogImage && <meta property="twitter:image" content={new URL(ogImage, siteUrl)}>}
+```
+
+在 Layout 里面使用
+```astro
+<OpenGraphTags title={frontmatter.title} description={frontmatter.description} ogImage={frontmatter.ogImage} />
+```
+
 ## Icon
 用的是 [Iconify](https://iconify.design/) 的图标, 在 astro 里面用的是 [iconify/astro](https://github.com/iconify/astro)
 
