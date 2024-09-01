@@ -13,7 +13,7 @@ const { title, description, lang = 'en', ogImage = '/og.jpeg' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="overflow-x-hidden">
 	<head>
 		<GoogleAnalytic />
 		<meta charset="UTF-8" />
@@ -27,7 +27,7 @@ const { title, description, lang = 'en', ogImage = '/og.jpeg' } = Astro.props;
 		<OpenGraphTags title={title} description={description} ogImage={ogImage} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="overflow-x-hidden">
 		<slot />
 	</body>
 </html>
