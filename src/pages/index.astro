@@ -9,52 +9,63 @@ import type { CollectionEntry } from 'astro:content';
 const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
 ---
 
-<Layout title="所有文章">
+<Layout title="博客主页">
   <Navbar />
 
   <main class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-8 text-center">所有文章</h1>
+    <h1 class="text-4xl font-bold mb-12 text-center">欢迎来到我的博客</h1>
 
-    <PageFind />
+    <!-- Search Section -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold mb-4">全文搜索</h2>
+      <PageFind />
+    </section>
 
-    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6">
+    <!-- Language Learning Project Section -->
+    <section class="mb-16">
       <a
         href="/bahasa/bahasa_project"
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden block mb-6 break-inside-avoid"
+        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden block"
       >
-        <div class="p-6">
-          <h2 class="text-2xl font-semibold mb-3 text-gray-900 dark:text-white">
+        <div class="p-8">
+          <h3 class="text-3xl font-bold mb-4">
             语言学习项目
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400">
+          </h3>
+          <p class="text-lg">
             探索语言学习的新方法和技巧，提高您的语言能力。
           </p>
         </div>
       </a>
+    </section>
 
-      {allPosts
-        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-        .map((post) => (
-          <a
-            href={`/blog/${post.slug}`}
-            class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden block mb-6 break-inside-avoid"
-          >
-            <div class="p-6">
-              <h2 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                {post.data.title}
-              </h2>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                {post.data.description || "No description available"}
-              </p>
-            </div>
-            <div class="px-6 pb-4">
-              <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
-                <span>{new Date(post.data.date).toLocaleDateString()}</span>
-                {/* <ViewCount /> */}
+    <!-- All Blogs Section -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6">所有文章</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allPosts
+          .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+          .map((post) => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden block"
+            >
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">
+                  {post.data.description || "No description available"}
+                </p>
               </div>
-            </div>
-          </a>
-        ))}
-    </div>
+              <div class="px-6 pb-4">
+                <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+                  <span>{new Date(post.data.date).toLocaleDateString()}</span>
+                  {/* <ViewCount /> */}
+                </div>
+              </div>
+            </a>
+          ))}
+      </div>
+    </section>
   </main>
 </Layout>
