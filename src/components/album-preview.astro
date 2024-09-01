@@ -19,7 +19,7 @@ const { title, cover, previews } = Astro.props;
       height={600}
       class="w-full h-full object-cover rounded-t-xl"
     />
-    <div class="absolute inset-0 transition-all duration-300 group-hover:scale-90 group-hover:-translate-x-4 group-hover:translate-y-4 group-hover:rotate-[-4deg]">
+    <div class="absolute inset-0 transition-all duration-300 group-hover:scale-90 group-hover:-translate-x-4 group-hover:translate-y-4 group-hover:rotate-[-4deg] z-10">
       {previews.map((preview, index) => (
         <Image
           src={preview}
@@ -27,10 +27,10 @@ const { title, cover, previews } = Astro.props;
           width={600}
           height={600}
           class={`absolute top-0 left-0 w-full h-full object-cover rounded-xl shadow-lg transform transition-all duration-300 origin-bottom-left
-            ${index === 0 ? 'group-hover:translate-x-[10%] group-hover:-translate-y-[5%] group-hover:rotate-[2deg] group-hover:scale-95' :
-              index === 1 ? 'group-hover:translate-x-[20%] group-hover:-translate-y-[10%] group-hover:rotate-[4deg] group-hover:scale-90' :
-              index === 2 ? 'group-hover:translate-x-[30%] group-hover:-translate-y-[15%] group-hover:rotate-[6deg] group-hover:scale-85' :
-              'group-hover:translate-x-[40%] group-hover:-translate-y-[20%] group-hover:rotate-[8deg] group-hover:scale-80'
+            ${index === 0 ? 'group-hover:translate-x-[50%] group-hover:-translate-y-[5%] group-hover:rotate-[2deg] group-hover:scale-95' :
+              index === 1 ? 'group-hover:translate-x-[100%] group-hover:-translate-y-[10%] group-hover:rotate-[4deg] group-hover:scale-90' :
+              index === 2 ? 'group-hover:translate-x-[150%] group-hover:-translate-y-[15%] group-hover:rotate-[6deg] group-hover:scale-85' :
+              'group-hover:translate-x-[200%] group-hover:-translate-y-[20%] group-hover:rotate-[8deg] group-hover:scale-80'
             }`}
         />
       ))}
