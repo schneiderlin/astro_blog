@@ -9,11 +9,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://linzihao.com",
-  integrations: [mdx(), react(), tailwind(), partytown(), sitemap()],
+  integrations: [mdx(), react(), tailwind({applyBaseStyles: false}), partytown(), sitemap()],
   output: "static",
-  // adapter: vercel({
-  //   webAnalytics: {
-  //     enabled: true
-  //   }
-  // })
 });
