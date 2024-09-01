@@ -143,3 +143,20 @@ export default defineConfig({
   <link rel="sitemap" href="/sitemap-index.xml" />
 </head>
 ```
+
+## Icon
+用的是 [Iconify](https://iconify.design/) 的图标, 在 astro 里面用的是 [iconify/astro](https://github.com/iconify/astro)
+
+安装
+`pnpm astro add astro-icon`
+
+在 Iconify 里面搜索图标, 拿到图标分两部分, icon set 和 icon name, 例如 `mdi:home`, mdi 是 icon set, home 是 icon name.
+使用 icon 的 component 是 
+```astro
+import { Icon } from 'astro-icon/components';
+
+<Icon icon="icon-set:icon-name" />
+```
+
+如果提示找不到 icon-set, 需要安装对应的 icon set, 例如
+`pnpm add @iconify-json/simple-icons`
