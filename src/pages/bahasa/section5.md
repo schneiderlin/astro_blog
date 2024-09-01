@@ -1,45 +1,36 @@
 ---
 layout: '@layouts/BlogPostLayout.astro'
-title: section 1
+title: section 5
 ---
 
-## words related to time in a day
-morning, pagi
+## Shopping and Daily Activities
+saya (ber)belanja hari ini, I shop today
+saya pergi berbelanja, I go shopping
 
-mid-day, siang
+saya beli sikat gigi, I buy toothbrush
+- beli, buy
+- sikat, brush
+- gigi, tooth
 
-afternoon, sore
+sikat kamar mandi, bathroom brush
+- kamar, room
+- mandi, bath
 
-evening and night, malam
+sapu, broom
+sapi, cow
 
-mid-night, supuh
+## Food and Animals
+daging babi, pork
+ikan, fish
+ikan hidup, live fish
 
-selamat pagi
+## Personal Information
+saya berasal dari china, I am originally from China
+- berasal, originally
 
-selamat siang
+## Personal Care
+keramas, wash hair
 
-selamat sore
-
-selamat malam
-
-but no selamat supuh, because people are at sleep
-
-## selamat
-what other things can selamat?
-
-selamat ulang tahun
-
-ulang is again, tahun is year. 
-
-selamat ulang tahun means happy birthday.
-
-## word related with year
-hari, day
-
-minggu, week
-
-month, bulan
-
-year, tahun
-
-century, abad
+## Personal Qualities
+pandai / pintar, smart
+ganteng / tampan, handsome

@@ -5,6 +5,9 @@ title: The Language Learning Project
 
 import { Image } from 'astro:assets';
 import network from '../../assets/network.png';
+import SocialLinks from '@components/SocialLinks.astro';
+import { Alert, AlertTitle, AlertDescription } from '@components/ui/alert';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@components/ui/accordion';
 
 ## About
 
@@ -43,14 +46,78 @@ Whether it's native speakers, fellow learners, or language experts, their insigh
 
 I invite you to join me on this journey, share your own experiences, and let's learn together!
 
-## Learning Techniques
+## Connect with me
+Feel free to reach out and connect with me on various platforms:
+
+<SocialLinks />
+
+## Learning Tools and Techniques
+
+### Shadowing
 One of the key techniques I've been using is shadowing, which I've detailed in my [The Benefits and Challenges of Shadowing](/blog/how_to_do_shadowing) blog post. This method has been particularly effective in improving my pronunciation and fluency.
 
-## Notes
-- [Section 1](/bahasa/section1)
-- [Section 2](/bahasa/section2)
+### Real-time Chatting with AI Characters
+Another technique I've been exploring is real-time chatting with AI characters on [Character.ai](https://character.ai). 
+This platform now supports voice chat, which adds an exciting dimension to language learning. 
+Character.ai also offers a wide range of AI characters covering various topics and roles. 
+This diversity allows you to practice language in different contexts, from casual conversations to specialized discussions.
 
-## Word Network Concept
+Character.ai has limitations for non-English languages, particularly in voice chat functionality. 
+The main issue is that the speech recognition model often struggles to accurately transcribe what non-native speakers say
+(possibly due to my bad pronunciation). 
+This results in incorrect transcripts being sent to the text model, leading to misunderstandings and less effective interactions.
+
+### Grammarly
+[Grammarly](https://www.grammarly.com/) is a popular writing assistant tool that uses artificial intelligence to check for grammar, spelling, punctuation, 
+and style issues in written text. 
+
+While it's a powerful tool for polishing writing, I primarily use it only for very formal occasions, 
+such as composing work-related emails.
+When it comes to acquiring a new language, I believe that grammar is less important than other aspects of language learning. 
+My approach focuses on immersion and exposure to correct language usage. 
+With enough practice using authentic materials in the target language, I find that grammatical structures are naturally acquired over time. 
+
+
+### Language Exchange with Real Humans
+[Tandem](https://www.tandem.net/) is a language exchange app that connects language learners from around the world. 
+It allows users to practice languages with native speakers through text, voice, and video chats.
+
+I've been using Tandem to find language exchange partners, and it has been an incredible experience. 
+Through the app, I've connected with several wonderful people who have become not just language partners, but friends. 
+In fact, these friendships and the progress I've made through these exchanges are a big part of why I decided to start this project. 
+
+I now have regular virtual meetings with my friends approximately 5 times per week. 
+As our community grows, I envision creating a network where learners and native speakers can connect more broadly, 
+In the future, we could organize group video calls for multiple learners to practice together, 
+supervised by native speakers, or even host skill-sharing workshops in various languages to combine language learning with other interests. 
+Additionally, we can pre-propose some topics for discussion or play group games.
+
+## Notes
+Here are some key notes from my language exchange sessions with my friends.
+
+<Alert variant="warning">
+  <AlertTitle>Note</AlertTitle>
+  <AlertDescription>
+    These notes require additional organization
+  </AlertDescription>
+</Alert>
+
+<details>
+  <summary>View Notes Sections</summary>
+  <ul>
+    <li><a href="/bahasa/section1">Section 1 Notes</a></li>
+    <li><a href="/bahasa/section2">Section 2 Notes</a></li>
+    <li><a href="/bahasa/section3">Section 3 Notes</a></li>
+    <li><a href="/bahasa/section4">Section 4 Notes</a></li>
+    <li><a href="/bahasa/section5">Section 5 Notes</a></li>
+    <li><a href="/bahasa/section6">Section 6 Notes</a></li>
+    <li><a href="/bahasa/section7">Section 7 Notes</a></li>
+    <li><a href="/bahasa/section8">Section 8 Notes</a></li>
+  </ul>
+</details>
+
+## TODO
+### Word Network
 I'm exploring an innovative approach to language learning by creating a comprehensive word network. The idea is to:
 
 1. Record and transcribe conversations
@@ -58,9 +125,6 @@ I'm exploring an innovative approach to language learning by creating a comprehe
 3. Create a system where clicking on a word retrieves all previous conversations containing that word
 
 This approach would gradually evolve into a vast network of words and conversations. The visualization might look something like this:
-
 <Image src={network} alt="Word network visualization" width="1200" height="1200" />
-
 In this network, the words with the most connections represent the most frequently used words, providing valuable insights into language usage patterns.
-
 This concept combines elements of contextual learning, frequency analysis, and interactive exploration, potentially offering a powerful tool for language learners at all levels.

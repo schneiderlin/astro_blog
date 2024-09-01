@@ -1,146 +1,98 @@
-## 中文
-送 
-火车站
-火车
-train
-站
-要 
-will 
-我开完会, 要送我的哥哥去火车站
-明天我也要去
+---
+layout: '@layouts/BlogPostLayout.astro'
+title: section 7
+---
 
-同一
+## Bahasa Indonesia
 
-## bahasa
-喝酒, halal, 穆斯林
-宗教
+### Location and Direction
+kemana: where someone is going
+dimana: where something is located
 
-kemarin 
-lalu 
+Anda / kamu mau pergi kemana?
+berada dimana
+_____ berada dimana
+kamu, toilet, etc berada dimana?
+berada = ada
+kamu dimana
+kamu ada dimana
+toilet berada dimana
+toilet ada dimana
+toiletnya ada dimana
 
-saya kaget,
-karenna, becoz
-they sell alocohol
+### Possessive Markers and Articles
+mu ku nya: belongs to someone
+nya: the
+bajumu
+bajuku
+bajunya
 
-mereka men + jual
+### Places and Locations
+toilet dimana
+toiletnya dimana
+toko
+toko ini dimana
+sekolah
+sekolah ini / itu dimana
+kasirnya dimana
 
-benarkah?
+### Pronouns
+kita vs kami
+ayo kita pergi
+kami akan pergi
+kita: inclusive
 
-daging domba, kambing
+### Other Words and Phrases
+harga: price
+harga + nya
 
-masakannya 
-jadi, so
+### Comparatives and Superlatives
+sekolah terdekat dimana?
+ter + dekat
+dekat: near
+jauh: far
+ter + kuat: strongest
+terdekat: the closest
+ter + pintar
+ter + bodoh
+paling
+paling pintar
+terpintar
 
-timur, east
-tengah, middle
+## Mandarin Chinese
 
-umum, common
+### Video and Media
+我今天发了个视频
+视频: video
+关于游戏制作的视频
+关于 (guanyu): about
+游戏 (youxi): game
+制作 (zhizuo): make
+玩 (wan): play
+你是职业玩家吗: are you professional player
+玩: play, 玩家: player
+职业 (zhiye)
 
-banyak
-bumbunya
-murid, murid 
+### Social Media and Platforms
+你在哪里发布视频
+发布 (fa bu): post
+我在 bilibili 发布视频
+你有 youtube 视频吗
+你有没有 youtube 视频  
 
+### Conjunctions and Adverbs
+但是没有人
+但是 (dan shi): but
+还是 (hai shi): still
+still is
+还有: still have
+还是新的
 
-您
-16:04
-我开完会, 要送我的哥哥去火车站
-同一 tong yi
-您
-16:06
-坐 sit
-zuo
-坐车, zuo che, literally sit car
-您
-16:07
-同一辆车, tong yi liang che
-您
-16:10
-提早 ti zao
-练习 practice
-练习 lian xi
-您
-16:11
-提早到几点呢 ti zao dao ji dian ne
-提早一小时 ti zao yi xiao shi
-小时 hour
-您
-16:13
-时 hour
-您
-16:15
-我们有时候, 需要把练习时间, 调整到傍晚
-有时候 some time
-调整 ajust
-tiao zheng
-您
-16:16
-需要 need
-您
-16:17
-吃饭 eat meal
-我把饭吃了
-我把 (noun) (verb) 了
-我把水喝了
-您
-16:21
-我把他杀了
-我杀他, I kill him
-我把他杀了, I make him bekilled
-Joseph Gallen
-16:24
-restoran muslim
-saya kaget
-karena
-mereka menjual alkohol
-Joseph Gallen
-16:26
-me + jual
-meNjual
-saya makan di restoran...
-Joseph Gallen
-16:27
-o ya?
-benarkah?
-kamu makan apa di sana?
-您
-16:29
-lamb
-Joseph Gallen
-16:29
-domba
-lamb
-kambing
-goat
-Joseph Gallen
-16:30
-nama masakannya apa?
-masak = cook
-masakan = noun = cooking
-makanan
-Joseph Gallen
-16:32
-oh ya, jadi itu restoran muslim, bukan restoran Indonesia ya?
-Joseph Gallen
-16:33
-jadi itu restoran dari timur tengah?
-Joseph Gallen
-16:36
-saya rasa itu restoran dari xinjiang
-apakah enak makanannya?
-apakah makanannya enak?
-您
-16:37
-satey
-Joseph Gallen
-16:37
-sate
-itu makanan yang umum di Indonesia
-Joseph Gallen
-16:39
-makanan di indonesia banyak bumbunya
-Joseph Gallen
-16:41
-bumbu-bumbu
-banyak bumbu
-many birdS
-murid-murid
+### Expressions and Opinions
+出名 (chu ming): famous
+我认为 (wo ren wei)
+我认为 youku 在中国是出名的
+我认为这是辣的
+我认为这个食物是辣的
+我以为你会来
+以为 vs 认为

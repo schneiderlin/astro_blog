@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Button } from '@components/ui/button';
+
+const socialLinks = [
+  { name: 'LinkedIn', icon: 'mdi:linkedin', url: 'https://www.linkedin.com/in/zihao-lin-8b8067326/' },
+  { name: 'X (Twitter)', icon: 'mdi:twitter', url: 'https://x.com/fTJSaF2VnI11762' },
+  { name: 'Bilibili', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/375039815' },
+  { name: '知乎 (Zhihu)', icon: 'simple-icons:zhihu', url: 'https://www.zhihu.com/people/lin-zi-hao-8-89' },
+  { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/schneiderlin' },
+];
+---
+
+<div class="flex flex-wrap gap-4">
+  {socialLinks.map((link) => (
+    <Button variant="outline" size="lg" asChild>
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2"
+      >
+        <Icon name={link.icon} class="w-5 h-5" />
+        <span>{link.name}</span>
+      </a>
+    </Button>
+  ))}
+</div>
