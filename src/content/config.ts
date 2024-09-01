@@ -8,8 +8,8 @@ const blogCollection = defineCollection({
     categories: z.array(z.string()).optional(),
     date: z.string(),
     description: z.string(),
-    lang: z.string(),
-  }),
+    ogImage: z.string().optional(),
+  })
 });
 
 export const collections = {

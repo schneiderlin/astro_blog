@@ -12,7 +12,7 @@ const { frontmatter, headings } = Astro.props;
 const lang = frontmatter.lang || 'en';
 ---
 
-<Layout title={frontmatter.title} lang={lang}>
+<Layout title={frontmatter.title} description={frontmatter.description} lang={lang}>
   <Navbar />
   <ReadProgressBar />
   <div class="bg-primary-200 min-h-screen">
