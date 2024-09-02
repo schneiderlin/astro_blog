@@ -4,6 +4,7 @@ author: linzihao
 date: "2024-07-10"
 description: An overview of the technologies and tools used to create this blog, including Astro, MDX, React, Tailwind CSS, and more.
 lang: "zh"
+tags: ["astro"]
 ---
 用的是 astro
 

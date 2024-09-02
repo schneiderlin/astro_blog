@@ -1,8 +1,8 @@
 ---
 title: "Profunctor"
 date: "2018-12-05"
+tags: ["functional programming", "scala"]
 auther: linzihao
-category: functional_programming
 description: An introduction to profunctors in functional programming, explaining their definition, relationship to bifunctors, and implementation in Scala. This post covers the basic structure of profunctors, their laws, and provides examples of profunctor instances like function types.
 lang: "zh"
 ---

@@ -10,6 +10,8 @@ import ReadProgressBar from "@components/ReadProgressBar.astro";
 
 const { frontmatter, headings } = Astro.props;
 const lang = frontmatter.lang || 'en';
+const tags = frontmatter.tags || [];
+
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description} lang={lang}>
@@ -19,6 +21,14 @@ const lang = frontmatter.lang || 'en';
     <div class="container mx-auto px-4 py-8">
       <!-- Title -->
       <h1 class="text-5xl font-extrabold text-center mb-4">{frontmatter.title}</h1>
+
+      <!-- Tags -->
+      <div class="text-center mb-4">
+        {tags.map((tag: string) => (
+          <span class="inline-block bg-gray-200 text-gray-700 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">{tag}</span>
+        ))}
+      </div>
+
       <!-- Description -->
       <p class="text-xl text-center mb-2 font-sans text-gray-600 max-w-2xl mx-auto">{frontmatter.description}</p>
       <!-- Date -->

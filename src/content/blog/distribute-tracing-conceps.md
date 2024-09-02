@@ -1,7 +1,7 @@
 ---
 title: 全链路追踪的各种概念
 author: linzihao
-categories: ["distribute_system"]
+tags: ["distribute system"]
 date: "2023-02-02"
 description: An overview of distributed tracing concepts, including traces, spans, and contexts, with a focus on OpenTracing standards and their applications in system monitoring and debugging.
 lang: "zh"

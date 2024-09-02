@@ -1,7 +1,7 @@
 ---
 title: "string search algorithm #1: 暴力枚举和Boyer–Moore算法"
 date: "2018-12-07"
-category: algorithm
+tags: ["algorithm"]
 author: linzihao
 description: An introduction to string search algorithms, focusing on the naive brute-force approach and the Boyer-Moore algorithm. This post explains the basic concepts, implementation details, and efficiency improvements of these methods for finding substrings within larger text.
 lang: "zh"

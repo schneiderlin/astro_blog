@@ -1,7 +1,7 @@
 ---
 title: "用clojure写个编译器, part1"
 author: linzihao
-categories: ["clojure", "compiler"]
+tags: ["clojure", "compiler"]
 date: "2023-01-21"
 lang: "zh"
 description: A tutorial series on building a compiler in Clojure, starting with simple arithmetic expressions and progressing to more complex language features, including AST visualization and compilation to stack-based VM instructions.
