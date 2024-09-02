@@ -27,7 +27,7 @@ const { title, description, lang = 'en', ogImage = '/og.jpeg' } = Astro.props;
 		<OpenGraphTags title={title} description={description} ogImage={ogImage} />
 		<title>{title}</title>
 	</head>
-	<body class="overflow-x-hidden">
+	<body class="overflow-x-hidden" style="background-color: #f0f0f0;">
 		<slot />
 	</body>
 </html>
