@@ -3,19 +3,40 @@ import { getCollection } from 'astro:content';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
 import type { CollectionEntry } from 'astro:content';
 
+// this function is for astro dynamic route, do not remove
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-
+  const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
   return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
+const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
+
 const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
 const { Content, headings } = await entry.render();
+
+const linkMap: Map<string, Set<CollectionEntry<'blog'>>> = generateLinkMap(blogEntries)
+
+function generateLinkMap(allPosts: CollectionEntry<'blog'>[]) {
+  const map = new Map<string, Set<CollectionEntry<'blog'>>>();
+  for (const post of allPosts) {
+    const links = extractLinks(post);
+    for (const link of links) {
+      const pagesWithThisLink = map.get(link) || new Set<CollectionEntry<'blog'>>();
+      pagesWithThisLink.add(post);
+      map.set(link, pagesWithThisLink);
+    }
+  }
+  return map;
+}
+
+function extractLinks(page: CollectionEntry<'blog'>) {
+  return [page.slug];
+}
 ---
 
-<BlogPostLayout frontmatter={entry.data} headings={headings}>
+<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={Array.from(linkMap.get(entry.slug) || [])}>
   <Content />
 </BlogPostLayout>

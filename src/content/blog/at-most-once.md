@@ -1,7 +1,7 @@
 ---
 title: at most once
 author: linzihao
-tags: ["distributed_system"]
+tags: ["distributed system"]
 date: "2018-11-29"
 description: An explanation of how to implement at-most-once semantics in distributed systems, covering client-side XID usage, server-side result caching, and strategies for cache management and handling concurrent requests.
 lang: "zh"

@@ -34,7 +34,6 @@ const albums = [
 ];
 
 const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
-
 const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags)));
 
 ---

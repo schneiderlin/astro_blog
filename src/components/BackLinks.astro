@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  backlinks: CollectionEntry<'blog'>[];
+}
+
+const { backlinks } = Astro.props;
+---
+
+{backlinks.length > 0 && (
+  <div class="border-t">
+    <h2 class="text-xl font-semibold mb-2">Backlinks</h2>
+    <ul class="list-disc pl-5">
+      {backlinks.map((link) => (
+        <li>
+          <a href={`/blog/${link.slug}`} class="text-blue-600 hover:underline">
+            {link.data.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

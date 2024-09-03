@@ -12,6 +12,15 @@ const blogCollection = defineCollection({
   })
 });
 
+const zettelCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    tags: z.array(z.string()),
+  })
+});
+
 export const collections = {
   'blog': blogCollection,
+  'zettel': zettelCollection,
 };

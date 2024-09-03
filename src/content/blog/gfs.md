@@ -1,7 +1,7 @@
 ---
 title: GFS
 author: linzihao
-tags: ["distributed_system"]
+tags: ["distributed system"]
 lang: "zh"
 date: "2018-10-29"
 tag: [6.824]

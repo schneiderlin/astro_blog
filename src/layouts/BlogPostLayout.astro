@@ -7,8 +7,28 @@ import CommandPalette from "@components/CommandPalette";
 import PostComment from "@components/PostComment.astro";
 import Footer from "@components/Footer.astro";
 import ReadProgressBar from "@components/ReadProgressBar.astro";
+import BackLinks from "@components/BackLinks.astro";
+import type { CollectionEntry } from 'astro:content';
 
-const { frontmatter, headings } = Astro.props;
+interface Frontmatter {
+  title: string;
+  description: string;
+  lang?: string;
+  tags?: string[];
+  date: string;
+}
+
+interface Props {
+  frontmatter: Frontmatter;
+  headings: {
+    depth: number;
+    slug: string;
+    text: string;
+  }[];
+  backlinks: CollectionEntry<'blog'>[];
+}
+
+const { frontmatter, headings, backlinks } = Astro.props;
 const lang = frontmatter.lang || 'en';
 const tags = frontmatter.tags || [];
 
@@ -46,6 +66,11 @@ const tags = frontmatter.tags || [];
         <article class="prose lg:prose-xl lg:w-4/5 font-sans">
           <slot />
         </article>
+
+        <!-- Backlinks -->
+        <div class="lg:w-1/5 lg:sticky lg:top-24 lg:self-start">
+          <BackLinks backlinks={backlinks} />
+        </div>
       </div>
 
       <!-- Comments -->

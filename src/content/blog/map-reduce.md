@@ -1,7 +1,7 @@
 ---
 title: map reduce
 author: linzihao
-tags: ["distributed_system"]
+tags: ["distributed system"]
 lang: "zh"
 tag: [6.824]
 date: "2018-11-30"
