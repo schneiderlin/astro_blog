@@ -200,3 +200,37 @@ import { Icon } from 'astro-icon/components';
 
 如果提示找不到 icon-set, 需要安装对应的 icon set, 例如
 `pnpm add @iconify-json/simple-icons`
+
+## 全文搜索
+用 PageFind 是在 build 的时候, 指定文件夹, 把文件夹里面的所有指定文件扫描, 并且生成对应的索引和搜索组件
+
+build step
+```json
+{
+  "scripts": {
+    "postbuild": "pagefind --site dist",
+  }
+}
+```
+
+在页面中使用
+```astro
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<div id="search"></div>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    new (window as any).PagefindUI({ 
+      element: '#search', 
+      processTerm: (term: string) => {
+        return term; // 这里可以帮用户分词
+      },
+      showSubResults: true 
+    });
+  });
+</script>
+```
+
+PageFind 会根据 html 的 lang 属性, 生成对应的语言的搜索组件.
+因此在每个 blog 的 fontmatter 里面都设置了 lang, 并且在传递到 Layout 中.
