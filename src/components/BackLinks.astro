@@ -8,7 +8,7 @@ interface Props {
 const { backlinks } = Astro.props;
 ---
 
-{backlinks.length > 0 && (
+{backlinks && backlinks.length > 0 && (
   <div class="border-t">
     <h2 class="text-xl font-semibold mb-2">Backlinks</h2>
     <ul class="list-disc pl-5">

@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
 import type { CollectionEntry } from 'astro:content';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import { visit } from 'unist-util-visit';
 
 // this function is for astro dynamic route, do not remove
 export async function getStaticPaths() {
@@ -18,6 +21,7 @@ const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
 const { Content, headings } = await entry.render();
 
 const linkMap: Map<string, Set<CollectionEntry<'blog'>>> = generateLinkMap(blogEntries)
+const currentBacklinks = Array.from(linkMap.get(`blog/${entry.slug}`) || [])
 
 function generateLinkMap(allPosts: CollectionEntry<'blog'>[]) {
   const map = new Map<string, Set<CollectionEntry<'blog'>>>();
@@ -32,11 +36,23 @@ function generateLinkMap(allPosts: CollectionEntry<'blog'>[]) {
   return map;
 }
 
-function extractLinks(page: CollectionEntry<'blog'>) {
-  return [page.slug];
+function extractLinks(page: CollectionEntry<'blog'>): string[] {
+  const links: string[] = [];
+  const tree = unified()
+    .use(remarkParse)
+    .parse(page.body);
+
+  visit(tree, 'link', (node: any) => {
+    if (node.url.startsWith('/')) {
+      links.push(node.url.slice(1));
+    }
+  });
+
+  return links;
 }
+
 ---
 
-<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={Array.from(linkMap.get(entry.slug) || [])}>
+<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={currentBacklinks}>
   <Content />
 </BlogPostLayout>
