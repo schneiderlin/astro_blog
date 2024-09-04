@@ -6,6 +6,7 @@ import PageFind from "@components/PageFind.astro";
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import AlbumPreview from '@/components/album-preview.astro';
+import BlogPostCard from '@/components/BlogPostCard.astro';
 
 import natureCover from '../assets/nature-cover.jpeg';
 import nature1 from '../assets/nature1.jpeg';
@@ -106,30 +107,7 @@ const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags)));
         {allPosts
           .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
           .map(post => (
-            <a
-              href={`/blog/${post.slug}`}
-              class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden block mb-6 break-inside-avoid post"
-              data-tags={post.data.tags.join(',')}
-            >
-              <div class="p-6">
-                <h3 class="text-center text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  {post.data.title}
-                </h3>
-                <div class="text-center mb-4">
-                  {post.data.tags.map(tag => (
-                    <span class="inline-block bg-gray-200 text-gray-700 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded">{tag}</span>
-                  ))}
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  {post.data.description || "No description available"}
-                </p>
-              </div>
-              <div class="px-6 pb-4">
-                <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
-                  <span>{new Date(post.data.date).toLocaleDateString()}</span>
-                </div>
-              </div>
-            </a>
+            <BlogPostCard post={post} />
           ))}
       </div>
     </section>
