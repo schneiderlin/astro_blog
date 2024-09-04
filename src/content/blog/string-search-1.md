@@ -36,7 +36,6 @@ P是从左往右滑动，但是对比的时候，是从P的右边开始对比
 ### 滑动规则
 滑动规则根据bad character rule和good suffix rule决定。  
 bad character rule  
-![](/assets/boyer-moore-bad-character.png)
 当这样对齐的时候，从右往左匹配，N A M都一样，然后N和A不一样。把T中不匹配的标记成红色，这个称为bad character。  
 出现bad character的时候，在bad character左边部分的P找下一个相同的字符（图中第二行蓝色的N）。  
 然后把P滑动到蓝色和红色对齐的位置。   
@@ -47,4 +46,3 @@ P想要匹配，就必须要有一个N跟红色的N对齐，因为P是从左往�
 如果P的左边部分没有N，证明这个红色N是一定匹配不到了，可以把P滑动到越过红色点。  
 
 good suffix rule  
-![](/assets/boyer-moore-good-suffix.png)

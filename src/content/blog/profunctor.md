@@ -21,7 +21,6 @@ trait Profunctor[F[_, _]] {
     bimap[A, A, B, C](identity[A])
 }
 ```
-![](/assets/profunctor1.png)
 
 function type就是profunctor的一个instance
 一开始是B => C的函数，指定return type如何map(C => D)和argument type如何map(A => B)，然后就能得到一个A => D的函数。
