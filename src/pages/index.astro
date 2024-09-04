@@ -70,19 +70,27 @@ const allTags = Array.from(new Set(allPosts.flatMap(post => post.data.tags)));
 
     <!-- Language Learning Project Section -->
     <section class="mb-16">
-      <a
-        href="/bahasa/bahasa_project"
-        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden block"
-      >
+      <div class="overflow-hidden">
         <div class="p-8">
-          <h3 class="text-3xl font-bold mb-4">
-            语言学习项目
+          <h3 class="text-3xl font-bold mb-4 text-gray-800">
+            Recent Activities
           </h3>
-          <p class="text-lg">
-            探索语言学习的新方法和技巧，提高您的语言能力。
-          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a href="/bahasa/bahasa_project" class="bg-white bg-opacity-50 p-6 rounded-lg shadow hover:shadow-md transition-all duration-300">
+              <h4 class="text-xl font-semibold mb-2 text-gray-700">Language Learning</h4>
+              <p class="text-gray-600">
+                Exploring new methods and techniques to enhance language skills.
+              </p>
+            </a>
+            <a class="bg-white bg-opacity-50 p-6 rounded-lg shadow hover:shadow-md transition-all duration-300">
+              <h4 class="text-xl font-semibold mb-2 text-gray-700">Open Source Contributions</h4>
+              <p class="text-gray-600">
+                Data Analysis, Visualization, and Literate Programming in Clojure
+              </p>
+            </a>
+          </div>
         </div>
-      </a>
+      </div>
     </section>
 
     <!-- Album UI Section (moved up) -->
