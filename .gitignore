@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+.clj-kondo/
+.lsp/
 
 # dependencies
 node_modules/

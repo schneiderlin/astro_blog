@@ -2,28 +2,31 @@
 title: "What Makes a Good Blog: Beyond Aesthetics and Technical Aspects"
 author: linzihao
 date: "2024-09-05"
-description: The idea of digital gardening, ideal navigation structures, and content update challenges
+description: The concept of digital gardening, ideal navigation structures, and content update challenges
 lang: "en"
 tags: ["blog"]
 ---
 A good blog should go beyond visual appeal and technical aspects like loading speed, responsiveness, and mobile-friendly design. It should arrange content in a way that is cognitively efficient for humans and entice readers to continue reading, similar to writing a marketing campaign document.
 
 ## Digital Garden
-I want to include everything I've learned and make it searchable. I like the idea of digital gardening, so I'll make the more polished blog posts more visible while hiding the entries for rougher drafts.
 
-What is a digital garden?
-I like the analogy in [How I built myself a Digital Garden](https://timrodenbroeker.de/digital-garden/). It contains three parts: clouds, drops, and plants.
-- Clouds are excerpts of the raw material I consume.
-- Drops are notes I make using my own words. Each drop is a self-contained, minimal idea with links to other drops or clouds. I also keep a zettelkasten system for all my drops.
-- Plants are the final text products, which can be blog posts, video scripts, design documents, etc.
+To create a comprehensive and searchable blog, I'm drawn to the concept of digital gardening. This approach allows me to showcase polished blog posts while also maintaining a space for rougher drafts.
 
-how to make it grow organically? it is also the idea of incremental writing, the "big picture" of the article is built primarily within the collection, and to a lesser extent in the writer's mind, the more drops and plants you have, the easier it is to grow a new plant.
+### What is a Digital Garden?
+
+I appreciate the analogy presented in [How I built myself a Digital Garden](https://timrodenbroeker.de/digital-garden/). It describes three key components:
+
+- **Clouds**: Excerpts of the raw material I consume.
+- **Drops**: Notes I make using my own words. Each drop is a self-contained, minimal idea with links to other drops or clouds. I maintain a zettelkasten system for all my drops.
+- **Plants**: The final text products, which can be blog posts, video scripts, design documents, etc.
+
+### Organic Growth and Incremental Writing
+
+The digital garden concept aligns with the idea of incremental writing. As the collection of drops and plants grows, it becomes easier to cultivate new plants (ideas). The "big picture" of an article develops primarily within the collection, and to a lesser extent in the writer's mind. This organic growth process allows for natural connections and expansions of ideas over time.
 
 ## How to Navigate
-Here is the ideal navigation structure for a digital garden:
-Links are powerful tools for connecting ideas. In a digital garden, knowledge isn't confined to a rigid tree-like structure of folders and sub-folders. Instead, it flourishes as an interconnected graph.
-This structure reflects the cross-cutting nature of ideas, where a single concept can relate to many others across various contexts and topics.
-By following these links, readers can make serendipitous discoveries and uncover interdisciplinary connections.
+
+An ideal navigation structure for a digital garden leverages the power of links to connect ideas. Unlike a rigid tree-like structure of folders and sub-folders, a digital garden flourishes as an interconnected graph. This structure reflects the cross-cutting nature of ideas, where a single concept can relate to many others across various contexts and topics.
 
 Both easily accessible and more obscure information have their place in a digital garden:
 - Less familiar or more complex information may be harder to find, but it offers greater information gain. This aligns with the concept of information entropy: the more surprising or unexpected the information, the higher its value.
