@@ -1,5 +1,5 @@
 ---
-title: "Unlocking Your Writing Potential: Strategies for Effortless and Impactful Writing"
+title: "Strategies for Effortless and Impactful Writing"
 author: linzihao
 date: "2024-09-06"
 description: "Discover practical techniques to make writing easier and more effective, including leveraging AI tools, personal note-taking systems, and identity-based habit formation for a more productive writing process."
