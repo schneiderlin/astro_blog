@@ -11,7 +11,7 @@ const getHeadingClasses = (depth: number) => {
     case 3:
       return `${baseClasses} text-base pl-4`;
     default:
-      return `${baseClasses} text-sm pl-${(depth - 1) * 4}`;
+      return `${baseClasses} text-sm pl-${depth * 4}`; // Increased indentation
   }
 };
 ---
@@ -22,7 +22,7 @@ const getHeadingClasses = (depth: number) => {
   </a>
   {
     heading.subheadings.length > 0 && (
-      <ul>
+      <ul class="ml-4"> {/* Added left margin for nested lists */}
         {heading.subheadings.map((subheading: Heading) => (
           <Astro.self heading={subheading} />
         ))}
