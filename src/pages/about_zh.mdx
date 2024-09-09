@@ -6,6 +6,9 @@ title: About Me
 import { Image } from 'astro:assets';
 import rest from '../assets/rest.jpg';
 import fixing from '../assets/fixing.jpg';
+import LanguageSwitch from '../components/LanguageSwitch';
+
+<LanguageSwitch client:load initialLang="zh" customPaths={{ en: '/about_en', zh: '/about_zh' }} />
 
 ## 简介
 Hi，我是林子豪，现居广州。如果你也在广州，咱们可以约个时间出来喝杯咖啡，聊聊工作。

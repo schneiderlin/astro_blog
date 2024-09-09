@@ -1,0 +1,28 @@
+---
+layout: '@layouts/BlogPostLayout.astro'
+title: About Me
+---
+
+import { Image } from 'astro:assets';
+import rest from '../assets/rest.jpg';
+import fixing from '../assets/fixing.jpg';
+import LanguageSwitch from '../components/LanguageSwitch';
+
+<LanguageSwitch client:load initialLang="en" customPaths={{ en: '/about_en', zh: '/about_zh' }} />
+
+## Introduction
+Hi, I'm Lin Zihao, currently living in Guangzhou. If you're also in Guangzhou, we could arrange a time to meet up for coffee and chat about work.
+
+Welcome to my blog. You can also connect with me through my social media accounts on LinkedIn, Bilibili, Instagram, and Twitter.
+
+For the past 5-6 years, I've been working as a software engineer. I'm particularly interested in studying databases, AI, algorithms, functional programming, and mathematics. On this website, you can find some of my study notes. I hope these bits of knowledge can inspire you or provide some insight when you need it.
+
+Of course, my career isn't limited to programming. Recently, I've started my own entrepreneurial journey, exploring areas I hadn't touched during my engineering career. There might be many new ideas and realizations along this path, and I'm really looking forward to sharing them with you through my writing.
+
+Lastly, I want to tell everyone that this website is not only a showcase of my learning outcomes but also a corner where I share my journey. I hope you can get to know me better through these words and images. I'm very much looking forward to future collaborations and exploring more possibilities together!
+
+## My MBTI
+<div class="flex">
+    <Image src={rest} alt="rest" width="300" height="300" />
+    <Image src={fixing} alt="fixing" width="300" height="300" />
+</div>
