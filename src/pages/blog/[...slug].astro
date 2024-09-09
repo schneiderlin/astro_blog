@@ -1,58 +1,73 @@
 ---
-import { getCollection } from 'astro:content';
+// import { getCollection } from 'astro:content';
 import BlogPostLayout from '@layouts/BlogPostLayout.astro';
-import type { CollectionEntry } from 'astro:content';
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import { visit } from 'unist-util-visit';
+// import type { CollectionEntry } from 'astro:content';
+// import { unified } from 'unified';
+// import remarkParse from 'remark-parse';
+// import { visit } from 'unist-util-visit';
 
 // this function is for astro dynamic route, do not remove
-export async function getStaticPaths() {
-  const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
-  return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+// export async function getStaticPaths() {
+//   const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
+//   return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
+//     params: { slug: entry.slug },
+//     props: { entry },
+//   }));
+// }
+
+// const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
+
+// const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
+// const { Content, headings } = await entry.render();
+
+// const linkMap: Map<string, Set<CollectionEntry<'blog'>>> = generateLinkMap(blogEntries)
+// const currentBacklinks = Array.from(linkMap.get(`blog/${entry.slug}`) || [])
+
+// function generateLinkMap(allPosts: CollectionEntry<'blog'>[]) {
+//   const map = new Map<string, Set<CollectionEntry<'blog'>>>();
+//   for (const post of allPosts) {
+//     const links = extractLinks(post);
+//     for (const link of links) {
+//       const pagesWithThisLink = map.get(link) || new Set<CollectionEntry<'blog'>>();
+//       pagesWithThisLink.add(post);
+//       map.set(link, pagesWithThisLink);
+//     }
+//   }
+//   return map;
+// }
+
+// function extractLinks(page: CollectionEntry<'blog'>): string[] {
+//   const links: string[] = [];
+//   const tree = unified()
+//     .use(remarkParse)
+//     .parse(page.body);
+
+//   visit(tree, 'link', (node: any) => {
+//     if (node.url.startsWith('/')) {
+//       links.push(node.url.slice(1));
+//     }
+//   });
+
+//   return links;
+// }
+
+import { getEntry } from "astro:content";
+// 1. Get the slug from the incoming server request
+const { slug } = Astro.params;
+if (slug === undefined) {
+  throw new Error("Slug is required");
 }
-
-const blogEntries: CollectionEntry<'blog'>[] = await getCollection('blog');
-
-const { entry } = Astro.props as { entry: CollectionEntry<'blog'> };
+// 2. Query for the entry directly using the request slug
+const entry = await getEntry("blog", slug);
+// 3. Redirect if the entry does not exist
+if (entry === undefined) {
+  return Astro.redirect("/404");
+}
+// 4. (Optional) Render the entry to HTML in the template
 const { Content, headings } = await entry.render();
-
-const linkMap: Map<string, Set<CollectionEntry<'blog'>>> = generateLinkMap(blogEntries)
-const currentBacklinks = Array.from(linkMap.get(`blog/${entry.slug}`) || [])
-
-function generateLinkMap(allPosts: CollectionEntry<'blog'>[]) {
-  const map = new Map<string, Set<CollectionEntry<'blog'>>>();
-  for (const post of allPosts) {
-    const links = extractLinks(post);
-    for (const link of links) {
-      const pagesWithThisLink = map.get(link) || new Set<CollectionEntry<'blog'>>();
-      pagesWithThisLink.add(post);
-      map.set(link, pagesWithThisLink);
-    }
-  }
-  return map;
-}
-
-function extractLinks(page: CollectionEntry<'blog'>): string[] {
-  const links: string[] = [];
-  const tree = unified()
-    .use(remarkParse)
-    .parse(page.body);
-
-  visit(tree, 'link', (node: any) => {
-    if (node.url.startsWith('/')) {
-      links.push(node.url.slice(1));
-    }
-  });
-
-  return links;
-}
 
 ---
 
-<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={currentBacklinks}>
+<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={[]}>
   <Content />
 </BlogPostLayout>
