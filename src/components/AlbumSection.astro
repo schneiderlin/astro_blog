@@ -1,6 +1,10 @@
 ---
 import AlbumPreview from './album-preview.astro';
 import type { ImageMetadata } from 'astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Album {
   id: number;
@@ -41,7 +45,7 @@ const { albums = defaultAlbums } = Astro.props;
 ---
 
 <section class="mb-16">
-  <h2 class="text-2xl font-semibold mb-6">相册集</h2>
+  <h2 class="text-2xl font-semibold mb-6">{ t('album') }</h2>
   <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-8 shadow-lg">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {albums.map((album) => (
