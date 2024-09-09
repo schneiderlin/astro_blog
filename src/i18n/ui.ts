@@ -3,6 +3,8 @@ export const languages = {
     zh: '简体中文',
 };
 
+export const showDefaultLang = false;
+
 export const defaultLang = 'en';
 
 export const ui = {

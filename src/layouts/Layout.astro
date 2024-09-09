@@ -1,6 +1,10 @@
 ---
 import GoogleAnalytic from '@components/GoogleAnalytic.astro';
 import OpenGraphTags from '@components/OpenGraphTags.astro';
+import { getLangFromUrl } from '../i18n/utils';
+import LanguagePicker from '../components/LanguagePicker.astro';
+
+const urlLang = getLangFromUrl(Astro.url);
 
 interface Props {
 	title: string;
@@ -9,7 +13,7 @@ interface Props {
 	ogImage?: string;
 }
 
-const { title, description, lang = 'en', ogImage = '/og.jpeg' } = Astro.props;
+const { title, description, lang = urlLang, ogImage = '/og.jpeg' } = Astro.props;
 ---
 
 <!doctype html>
