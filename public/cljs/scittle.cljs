@@ -36,9 +36,15 @@
   (let [ref (use-script {:code "vegaEmbed(document.currentScript.parentElement, {\"encoding\":{\"y\":{\"field\":\"y\",\"type\":\"quantitative\"},\"size\":{\"value\":400},\"x\":{\"field\":\"x\",\"type\":\"quantitative\"}},\"mark\":{\"type\":\"circle\",\"tooltip\":true},\"width\":400,\"background\":\"floralwhite\",\"height\":100,\"data\":{\"url\":\"macro1_files\\/0.csv\",\"format\":{\"type\":\"csv\"}}});"})]
     [:div {:ref ref}]))
 
+(defn echart-comoponent []
+  (let [ref (use-script {:code "\n{\n  var myChart = echarts.init(document.currentScript.parentElement);\n  myChart.setOption({\"title\":{\"text\":\"Echarts Example\"},\"tooltip\":{},\"legend\":{\"data\":[\"sales\"]},\"xAxis\":{\"data\":[\"Shirts\",\"Cardigans\",\"Chiffons\",\"Pants\",\"Heels\",\"Socks\"]},\"yAxis\":{},\"series\":[{\"name\":\"sales\",\"type\":\"bar\",\"data\":[5,20,36,10,10,20]}]});\n};"})]
+    [:div {:style {:height "400px" :width "100%"}
+           :ref ref}]))
+
 (defn my-component [] 
   [:div
    [:f> vega-component]
+   [:f> echart-comoponent]
    [:h1 {:ref (fn [el] (println "h1" el))} "Scittle"]
    [:f> my-stateful-component]
    [(fn [{:keys [initial-value
