@@ -1,8 +1,7 @@
 ---
 title: raft
 author: linzihao
-tags: ["distributed system"]
-tag: [6.824]
+tags: ["distributed system", "6.824"]
 date: "2018-10-29"
 description: An overview of the Raft consensus algorithm, explaining its key components including leader election and log replication. This post covers the basics of how Raft ensures consistency across distributed systems, handles network partitions, and maintains a replicated state machine.
 lang: "zh"
