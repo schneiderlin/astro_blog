@@ -17,7 +17,7 @@ One of the primary reasons for unhappiness at work is the inability to see the i
 Typically, one's capacity for control and impact correlates with their organizational rank. This implies that pursuing roles with expanded responsibilities and greater influence may lead to enhanced job satisfaction.
 
 
-## actions
+## Actions
 Exercise discernment in project selection. 
 A more unconventional perspective views the company as a platform to leverage its resources for experimentation and personal goal attainment. 
 Ideally, your objectives should harmonize with the company's mission, but maintain realistic expectations.
