@@ -1,0 +1,56 @@
+---
+import AlbumPreview from './album-preview.astro';
+import type { ImageMetadata } from 'astro';
+
+interface Album {
+  id: number;
+  title: string;
+  cover: ImageMetadata;
+  previews: ImageMetadata[];
+}
+
+interface Props {
+  albums?: Album[];
+}
+
+import natureCover from '../assets/nature-cover.jpeg';
+import nature1 from '../assets/nature1.jpeg';
+import nature2 from '../assets/nature2.jpeg';
+
+import foodCover from '../assets/foods/cover.jpg';
+import food1 from '../assets/foods/1.jpg';
+import food2 from '../assets/foods/2.jpg';
+import food3 from '../assets/foods/3.jpg';
+import food4 from '../assets/foods/4.jpg';
+import food5 from '../assets/foods/5.jpg';
+import food6 from '../assets/foods/6.jpg';
+import food7 from '../assets/foods/7.jpg';
+import food8 from '../assets/foods/8.jpg';
+import food9 from '../assets/foods/9.jpg';
+import food10 from '../assets/foods/10.jpg';
+import food11 from '../assets/foods/11.jpg';
+import food12 from '../assets/foods/12.jpg';
+import food13 from '../assets/foods/13.jpg';
+
+const defaultAlbums = [
+  { id: 1, title: 'Nature', cover: natureCover, previews: [nature1, nature2] },
+  { id: 2, title: 'Food', cover: foodCover, previews: [food1, food2, food3, food4, food5, food6, food7, food8, food9, food10, food11, food12, food13] },
+];
+
+const { albums = defaultAlbums } = Astro.props;
+---
+
+<section class="mb-16">
+  <h2 class="text-2xl font-semibold mb-6">相册集</h2>
+  <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-8 shadow-lg">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {albums.map((album) => (
+        <AlbumPreview
+          title={album.title}
+          cover={album.cover}
+          previews={album.previews}
+        />
+      ))}
+    </div>
+  </div>
+</section>
