@@ -1,5 +1,5 @@
 ---
-title: 各种category
+title: Contravariant Functor Intuition
 author: linzihao
 tags: ["scala", "functional programming"]
 date: "2018-11-19"
