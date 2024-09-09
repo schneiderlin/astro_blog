@@ -1,55 +1,57 @@
 (require '[reagent.core :as r]
          '[reagent.dom :as rdom])
 
-(defn my-component []
-  [:div 
-   [:div
-    [:pre
-     [:code.sourceCode.language-clojure.source-clojure.bg-light
-      "(ns macro1\n  (:require \n   [scicloj.kindly.v4.kind :as kind]))"]]]
-   [:p "some comment here"]
-   [:div {:style {:background-color "#eeddee" :border-style "solid"}}
-    [:p {:style {:background-color "#ccddcc" :border-style "solid"}} "hello"]
-    [:div {} [:p "hello " [:em "hello"] " " [:strong "hello"]]]
-    [:div {}
-     [:pre
-      [:code.sourceCode.language-clojure.source-clojure.bg-light
-       "(defn f [x] (+  x 9))"]]]]
-   [:div
-    [:div
-     [:script
-      "katex.render(\"x^2=\\\\alpha\", document.currentScript.parentElement, {throwOnError: false});"]]]
-   [:p "If $x$ equals 9, then $$x^2+9=90$$"]
-   ""
-   [:div
-    [:pre
-     [:code.sourceCode.language-clojure.source-clojure.bg-light "(def x 1)"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light "1"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.printed-clojure "1\r\n"]]]
-   [:div
-    [:pre
-     [:code.sourceCode.language-clojure.source-clojure.bg-light
-      "&quot;str&quot;"]]]
-   [:div
-    [:pre
-     [:code.sourceCode.language-clojure.printed-clojure "&quot;str&quot;\r\n"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light "1.1"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.printed-clojure "1.1\r\n"]]]
-   [:div
-    [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light ":keyword"]]]
-   [:div
-    [:pre [:code.sourceCode.language-clojure.printed-clojure ":keyword\r\n"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light "nil"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.printed-clojure "nil\r\n"]]]
-   [:div
-    [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light "true"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.printed-clojure "true\r\n"]]]
-   [:div
-    [:pre [:code.sourceCode.language-clojure.source-clojure.bg-light "[1 2 3]"]]]
-   [:div [:pre [:code.sourceCode.language-clojure.printed-clojure "[1 2 3]\r\n"]]]
-   [:div
-    [:pre [:code.sourceCode.language-clojure.printed-clojure "{:a 1, :b 2}\r\n"]]]
-   [:div {:style {:height "2px" :width "100%" :background-color "grey"}}]
-   [:div nil]])
+(defn my-custom-hook []
+  (let [[count set-count] (js/React.useState 0)]
+    {:count count
+     :set-count set-count}))
 
-(rdom/render [my-component] (.getElementById js/document "app"))
+(defn my-stateful-component []
+  (let [{:keys [count set-count]} (my-custom-hook)]
+     [:div
+      [:p "You clicked " count " times"]
+      [:button
+       {:on-click #(set-count inc)}
+       "Click"]]))
+
+(defn use-script [{:keys [url code]}]
+  (let [ref (js/React.useRef)
+        _ (js/React.useEffect
+           (fn []
+             (when (.-current ref)
+               (let [script (js/document.createElement "script")]
+                 (when url
+                   (.setAttribute script "src" url)
+                   (.setAttribute script "type" "application/javascript"))
+                 (when code
+                   (set! (.-textContent script) code)
+                   (.setAttribute script "type" "application/javascript"))
+                 (.appendChild (.-current ref) script)
+                 (fn []
+                   (.removeChild (.-current ref) script)))))
+           [url code ref])]
+    ref))
+
+(defn vega-component []
+  (let [ref (use-script {:code "vegaEmbed(document.currentScript.parentElement, {\"encoding\":{\"y\":{\"field\":\"y\",\"type\":\"quantitative\"},\"size\":{\"value\":400},\"x\":{\"field\":\"x\",\"type\":\"quantitative\"}},\"mark\":{\"type\":\"circle\",\"tooltip\":true},\"width\":400,\"background\":\"floralwhite\",\"height\":100,\"data\":{\"url\":\"macro1_files\\/0.csv\",\"format\":{\"type\":\"csv\"}}});"})]
+    [:div {:ref ref}]))
+
+(defn my-component [] 
+  [:div
+   [:f> vega-component]
+   [:h1 {:ref (fn [el] (println "h1" el))} "Scittle"]
+   [:f> my-stateful-component]
+   [(fn [{:keys [initial-value
+                 background-color]}]
+      (let [*click-count (reagent.core/atom initial-value)]
+        (fn []
+          [:div {:style {:background-color background-color}}
+           "The atom " [:code "*click-count"] " has value: "
+           @*click-count ". "
+           [:input {:type "button" :value "Click me!"
+                    :on-click #(swap! *click-count inc)}]])))
+    {:initial-value 9
+     :background-color "#d4ebe9"}]])
+
+
+(rdom/render [:f> my-component] (.getElementById js/document "app"))
