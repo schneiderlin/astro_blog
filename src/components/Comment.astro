@@ -1,0 +1,23 @@
+---
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+---
+
+<form class="space-y-4 w-full max-w-md mx-auto">
+        <div>
+                <label
+                        htmlFor="comment"
+                        className="block text-sm font-medium text-gray-700"
+                >
+                        Comment as LinZiHao(username)
+                </label>
+                <Textarea
+                        id="comment"
+                        required
+                        className="mt-1"
+                        placeholder="Your comment"
+                        rows={4}
+                />
+        </div>
+        <Button type="submit" className="w-full"> Submit Comment </Button>
+</form>
