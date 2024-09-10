@@ -31,16 +31,18 @@ function buildToc(headings: Heading[]) {
 const toc = buildToc(headings);
 ---
 
-<nav class="toc">
-  <div class="sticky top-24">
-    <div class="pb-4 text-2xl font-bold text-secondary-800">
-      Table of Contents
+{toc.length > 0 && (
+  <nav class="toc">
+    <div class="sticky top-24">
+      <div class="pb-4 text-2xl font-bold text-secondary-800">
+        Table of Contents
+      </div>
+      <ul class="font-sans">
+        {toc.map((heading: Heading) => <TableOfContentsHeading heading={heading} />)}
+      </ul>
     </div>
-    <ul class="font-sans">
-      {toc.map((heading: Heading) => <TableOfContentsHeading heading={heading} />)}
-    </ul>
-  </div>
-</nav>
+  </nav>
+)}
 
 <script>
   function updateActiveHeading() {
