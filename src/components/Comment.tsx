@@ -46,7 +46,7 @@ export default function Comment() {
                         <button onClick={signIntoFirebaseWithClerk}>Sign in</button>
 
                         {/* Remove this button if you do not have Firestore set up */}
-                        <button onClick={getFirestoreData}>Get document</button>
+                        <button onClick={() => getFirestoreData("information_source")}>Get document</button>
                 </main>
         )
 }

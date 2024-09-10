@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs } from "firebase/firestore";
 import { useAuth } from '@clerk/astro/react'
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithCustomToken } from 'firebase/auth'
@@ -21,13 +21,19 @@ const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const auth = getAuth(app)
 
-export const getFirestoreData = async () => {
-  const docRef = doc(db, 'comment', "ijT8vMQ6QV75BmHiSCdL")
-  const docSnap = await getDoc(docRef)
-  if (docSnap.exists()) {
-    console.log('Document data:', docSnap.data())
+export const getFirestoreData = async (articleId: string) => {
+  const commentsRef = collection(db, 'blog', articleId, 'comments');
+  const commentsSnapshot = await getDocs(commentsRef);
+  
+  if (!commentsSnapshot.empty) {
+    const comments = commentsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    console.log('Comments for article:', comments);
+    return comments;
   } else {
-    // docSnap.data() will be undefined in this case
-    console.log('No such document!')
+    console.log('No comments found for this article');
+    return [];
   }
 }
