@@ -27,9 +27,10 @@ interface Props {
     text: string;
   }[];
   backlinks: CollectionEntry<'blog'>[];
+  articleId: string;
 }
 
-const { frontmatter, headings, backlinks } = Astro.props;
+const { frontmatter, headings, backlinks, articleId: slug } = Astro.props;
 const lang = frontmatter.lang || 'en';
 const tags = frontmatter.tags || [];
 
@@ -76,7 +77,7 @@ const locals = Astro.locals;
       </div>
 
       <!-- Comments -->
-      <PostComment client:only="react" />
+      <PostComment client:only="react" articleId={slug} />
       <!-- <PostComment /> -->
 
       <!-- Footer -->

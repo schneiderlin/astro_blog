@@ -65,9 +65,9 @@ if (entry === undefined) {
 }
 // 4. (Optional) Render the entry to HTML in the template
 const { Content, headings } = await entry.render();
-
+const articleId = slug.split("/").findLast((segment) => segment !== "")!;
 ---
 
-<BlogPostLayout frontmatter={entry.data} headings={headings} backlinks={[]}>
+<BlogPostLayout articleId={articleId} frontmatter={entry.data} headings={headings} backlinks={[]}>
   <Content />
 </BlogPostLayout>

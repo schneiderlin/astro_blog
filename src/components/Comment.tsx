@@ -2,10 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useStore } from '@nanostores/react'
 import { $userStore } from '@clerk/astro/client'
-import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/astro/react";
-import { collection, getDocs } from "firebase/firestore";
+import { useAuth } from "@clerk/astro/react";
 import { useEffect, useState } from "react";
-import { auth, db, getComments, postComment } from "@/firebase";
+import { auth, getComments, postComment } from "@/firebase";
 import { signInWithCustomToken } from "firebase/auth";
 import { Timestamp } from "firebase/firestore";
 
@@ -16,7 +15,11 @@ interface Comment {
   createdAt: Timestamp;
 }
 
-export default function Comment() {
+interface CommentProps {
+  articleId: string;
+}
+
+export default function Comment({ articleId }: CommentProps) {
 	const user = useStore($userStore)
 	const { getToken, userId } = useAuth()
 	const [comments, setComments] = useState<Comment[]>([])
@@ -41,7 +44,7 @@ export default function Comment() {
 	// Fetch comments
 	const fetchComments = async () => {
 		try {
-			const commentsData = await getComments("information_source") as Comment[];
+			const commentsData = await getComments(articleId) as Comment[];
 			setComments(commentsData);
 		} catch (error) {
 			console.error('Error fetching comments:', error);
@@ -62,7 +65,7 @@ export default function Comment() {
 		if (!newComment.trim() || !user) return;
 
 		try {
-			await postComment("information_source", user.username || "Anonymous", newComment);
+			await postComment(articleId, user.username || "Anonymous", newComment);
 			setNewComment("");
 			await fetchComments(); // Reload comments after posting
 		} catch (error) {
