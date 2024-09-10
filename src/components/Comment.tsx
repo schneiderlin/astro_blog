@@ -7,12 +7,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { auth, db, getFirestoreData } from "@/firebase";
 import { signInWithCustomToken } from "firebase/auth";
+import { Timestamp } from "firebase/firestore";
 
 interface Comment {
   id: string;
   author: string;
   content: string;
-  createdAt: string;
+  createdAt: Timestamp;
 }
 
 export default function Comment() {
@@ -65,7 +66,9 @@ export default function Comment() {
 					<li key={comment.id} className="bg-white shadow rounded-lg p-4">
 						<div className="flex justify-between items-start">
 							<span className="font-semibold text-gray-800">{comment.author}</span>
-							<span className="text-sm text-gray-500">{new Date(comment.createdAt).toLocaleString()}</span>
+							<span className="text-sm text-gray-500">
+								{new Date(comment.createdAt.seconds * 1000).toLocaleString()}
+							</span>
 						</div>
 						<p className="mt-2 text-gray-600">{comment.content}</p>
 					</li>
