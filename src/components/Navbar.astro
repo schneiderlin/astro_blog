@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
+import Login from '@/components/Login.astro';
 
 const lang = getLangFromUrl(Astro.url) || 'en';
 const t = useTranslations(lang);
@@ -64,17 +64,7 @@ const t = useTranslations(lang);
           >
         </li>
         <li>
-          <SignedOut>
-            <SignInButton mode="modal" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300" />
-          </SignedOut>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" appearance={{
-              elements: {
-                avatarBox: "w-10 h-10",
-                userButtonAvatarBox: "w-10 h-10"
-              }
-            }} />
-          </SignedIn>
+          <Login />
         </li>
       </ul>
     </div>
