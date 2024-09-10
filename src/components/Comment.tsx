@@ -1,47 +1,53 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useStore } from '@nanostores/react'
-import { $authStore } from '@clerk/astro/client'
 import { $userStore } from '@clerk/astro/client'
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/astro/react";
-import { useSyncExternalStore, useTransition, useEffect, useState } from "react";
+import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/astro/react";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
+import { auth, db, getFirestoreData } from "@/firebase";
+import { signInWithCustomToken } from "firebase/auth";
 
 export default function Comment() {
-        // const { userId, sessionId } = useStore($authStore)
         const user = useStore($userStore)
-        // console.log("userId", userId)
-        console.log("user", user)
+        const { getToken, userId } = useAuth()
 
-        if (!user) {
-                return (
-                        <div className="w-full max-w-md mx-auto text-center">
-                                <p className="mb-4">Please sign in to leave a comment.</p>
-                                <SignedOut>
-                                        <SignInButton />
-                                </SignedOut>
-                                <SignedIn>
-                                        <UserButton />
-                                </SignedIn>
-                        </div>
-                )
+        useEffect(() => {
+                console.log("use effect")
+                const f = async () => {
+                        const querySnapshot = await getDocs(collection(db, "users"));
+                        querySnapshot.forEach((doc) => {
+                                console.log(`${doc.id} => ${doc.data()}`);
+                        });
+                }
+                f()
+                        .catch((error) => {
+                                console.error("Error fetching users:", error);
+                        });
+        }, [])
+
+        // Handle if the user is not signed in
+        // You could display content, or redirect them to a sign-in page
+        if (!userId) {
+                return <p>You need to sign in with Clerk to access this page.</p>
+        }
+
+        const signIntoFirebaseWithClerk = async () => {
+                const token = await getToken({ template: 'integration_firebase' })
+
+                const userCredentials = await signInWithCustomToken(auth, token || '')
+                // The userCredentials.user object can call the methods of
+                // the Firebase platform as an authenticated user.
+                console.log('User:', userCredentials.user)
         }
 
         return (
-                <form className="space-y-4 w-full max-w-md mx-auto">
-                        <div>
-                                <p className="block text-sm font-medium text-gray-700">
-                                        {`Comment as ${user?.fullName}`}
-                                </p>
-                                <Textarea
-                                        id="comment"
-                                        required
-                                        className="mt-1"
-                                        placeholder="Your comment"
-                                        rows={4}
-                                />
-                        </div>
-                        <Button type="submit" className="w-full">Submit Comment</Button>
-                </form>
+                <main style={{ display: 'flex', flexDirection: 'column', rowGap: '1rem' }}>
+                        <button onClick={signIntoFirebaseWithClerk}>Sign in</button>
+
+                        {/* Remove this button if you do not have Firestore set up */}
+                        <button onClick={getFirestoreData}>Get document</button>
+                </main>
         )
 }
 
