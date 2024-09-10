@@ -4,51 +4,86 @@ import { useStore } from '@nanostores/react'
 import { $userStore } from '@clerk/astro/client'
 import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/astro/react";
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { auth, db, getFirestoreData } from "@/firebase";
 import { signInWithCustomToken } from "firebase/auth";
 
+interface Comment {
+  id: string;
+  author: string;
+  content: string;
+  createdAt: string;
+}
+
 export default function Comment() {
-        const user = useStore($userStore)
-        const { getToken, userId } = useAuth()
+	const user = useStore($userStore)
+	const { getToken, userId } = useAuth()
+	const [comments, setComments] = useState<Comment[]>([])
 
-        useEffect(() => {
-                console.log("use effect")
-                const f = async () => {
-                        const querySnapshot = await getDocs(collection(db, "users"));
-                        querySnapshot.forEach((doc) => {
-                                console.log(`${doc.id} => ${doc.data()}`);
-                        });
-                }
-                f()
-                        .catch((error) => {
-                                console.error("Error fetching users:", error);
-                        });
-        }, [])
+	useEffect(() => {
+		const signIntoFirebaseWithClerk = async () => {
+			if (userId) {
+				try {
+					const token = await getToken({ template: 'integration_firebase' })
+					const userCredentials = await signInWithCustomToken(auth, token || '')
+					console.log('User signed in to Firebase:', userCredentials.user)
+				} catch (error) {
+					console.error('Error signing in to Firebase:', error)
+				}
+			}
+		}
 
-        // Handle if the user is not signed in
-        // You could display content, or redirect them to a sign-in page
-        if (!userId) {
-                return <p>You need to sign in with Clerk to access this page.</p>
-        }
+		signIntoFirebaseWithClerk()
+	}, [userId, getToken])
 
-        const signIntoFirebaseWithClerk = async () => {
-                const token = await getToken({ template: 'integration_firebase' })
+	// Fetch comments
+	const fetchComments = async () => {
+		try {
+			const commentsData = await getFirestoreData("information_source") as Comment[];
+			setComments(commentsData);
+		} catch (error) {
+			console.error('Error fetching comments:', error);
+		}
+	};
 
-                const userCredentials = await signInWithCustomToken(auth, token || '')
-                // The userCredentials.user object can call the methods of
-                // the Firebase platform as an authenticated user.
-                console.log('User:', userCredentials.user)
-        }
+	useEffect(() => {
+		fetchComments();
+	}, []);
 
-        return (
-                <main style={{ display: 'flex', flexDirection: 'column', rowGap: '1rem' }}>
-                        <button onClick={signIntoFirebaseWithClerk}>Sign in</button>
+	// Handle if the user is not signed in
+	if (!userId) {
+		return <p className="text-center text-gray-600">You need to sign in with Clerk to access this page.</p>
+	}
 
-                        {/* Remove this button if you do not have Firestore set up */}
-                        <button onClick={() => getFirestoreData("information_source")}>Get document</button>
-                </main>
-        )
+	return (
+		<div className="flex flex-col space-y-6 p-4">
+			<h2 className="text-2xl font-bold">Comments</h2>
+			
+			{/* Comments list */}
+			<ul className="space-y-4">
+				{comments.map((comment) => (
+					<li key={comment.id} className="bg-white shadow rounded-lg p-4">
+						<div className="flex justify-between items-start">
+							<span className="font-semibold text-gray-800">{comment.author}</span>
+							<span className="text-sm text-gray-500">{new Date(comment.createdAt).toLocaleString()}</span>
+						</div>
+						<p className="mt-2 text-gray-600">{comment.content}</p>
+					</li>
+				))}
+			</ul>
+
+			{/* New comment form */}
+			<form className="mt-6">
+				<Textarea
+					placeholder="Write a comment..."
+					className="w-full p-2 border rounded-md"
+				/>
+				<Button type="submit" className="mt-2">
+					Post Comment
+				</Button>
+			</form>
+		</div>
+	)
 }
 
 
