@@ -12,19 +12,19 @@ export default function Comment() {
         // console.log("userId", userId)
         console.log("user", user)
 
-        // if (!user) {
-        //         return (
-        //                 <div className="w-full max-w-md mx-auto text-center">
-        //                         <p className="mb-4">Please sign in to leave a comment.</p>
-        //                         <SignedOut>
-        //                                 <SignInButton />
-        //                         </SignedOut>
-        //                         <SignedIn>
-        //                                 <UserButton />
-        //                         </SignedIn>
-        //                 </div>
-        //         )
-        // }
+        if (!user) {
+                return (
+                        <div className="w-full max-w-md mx-auto text-center">
+                                <p className="mb-4">Please sign in to leave a comment.</p>
+                                <SignedOut>
+                                        <SignInButton />
+                                </SignedOut>
+                                <SignedIn>
+                                        <UserButton />
+                                </SignedIn>
+                        </div>
+                )
+        }
 
         return (
                 <form className="space-y-4 w-full max-w-md mx-auto">

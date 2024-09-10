@@ -4,8 +4,8 @@ import TableOfContents from "@components/TableOfContents.astro";
 import Layout from "./Layout.astro";
 import Navbar from "@components/Navbar.astro";
 import CommandPalette from "@components/CommandPalette";
-// import PostComment from "@/components/GiscusComment.astro";
-import PostComment from "@/components/Comment";
+import PostComment from "@/components/GiscusComment.astro";
+// import PostComment from "@/components/Comment";
 import Footer from "@components/Footer.astro";
 import ReadProgressBar from "@components/ReadProgressBar.astro";
 import BackLinks from "@components/BackLinks.astro";
@@ -76,7 +76,8 @@ const locals = Astro.locals;
       </div>
 
       <!-- Comments -->
-      <PostComment client:only="react" />
+      <!-- <PostComment client:only="react" /> -->
+      <PostComment />
 
       <!-- Footer -->
       <Footer />
