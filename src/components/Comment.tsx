@@ -5,7 +5,7 @@ import { $userStore } from '@clerk/astro/client'
 import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from "@clerk/astro/react";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { auth, db, getFirestoreData } from "@/firebase";
+import { auth, db, getComments, postComment } from "@/firebase";
 import { signInWithCustomToken } from "firebase/auth";
 import { Timestamp } from "firebase/firestore";
 
@@ -20,6 +20,7 @@ export default function Comment() {
 	const user = useStore($userStore)
 	const { getToken, userId } = useAuth()
 	const [comments, setComments] = useState<Comment[]>([])
+	const [newComment, setNewComment] = useState("")
 
 	useEffect(() => {
 		const signIntoFirebaseWithClerk = async () => {
@@ -40,7 +41,7 @@ export default function Comment() {
 	// Fetch comments
 	const fetchComments = async () => {
 		try {
-			const commentsData = await getFirestoreData("information_source") as Comment[];
+			const commentsData = await getComments("information_source") as Comment[];
 			setComments(commentsData);
 		} catch (error) {
 			console.error('Error fetching comments:', error);
@@ -55,6 +56,19 @@ export default function Comment() {
 	if (!userId) {
 		return <p className="text-center text-gray-600">You need to sign in with Clerk to access this page.</p>
 	}
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!newComment.trim() || !user) return;
+
+		try {
+			await postComment("information_source", user.username || "Anonymous", newComment);
+			setNewComment("");
+			await fetchComments(); // Reload comments after posting
+		} catch (error) {
+			console.error('Error posting comment:', error);
+		}
+	};
 
 	return (
 		<div className="flex flex-col space-y-6 p-4">
@@ -76,10 +90,12 @@ export default function Comment() {
 			</ul>
 
 			{/* New comment form */}
-			<form className="mt-6">
+			<form className="mt-6" onSubmit={handleSubmit}>
 				<Textarea
 					placeholder="Write a comment..."
 					className="w-full p-2 border rounded-md"
+					value={newComment}
+					onChange={(e) => setNewComment(e.target.value)}
 				/>
 				<Button type="submit" className="mt-2">
 					Post Comment

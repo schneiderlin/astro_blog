@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { doc, getDoc, getFirestore, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc, getFirestore, collection, getDocs, addDoc, serverTimestamp } from "firebase/firestore";
 import { useAuth } from '@clerk/astro/react'
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithCustomToken } from 'firebase/auth'
@@ -21,7 +21,7 @@ const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const auth = getAuth(app)
 
-export const getFirestoreData = async (articleId: string) => {
+export const getComments = async (articleId: string) => {
   const commentsRef = collection(db, 'blog', articleId, 'comments');
   const commentsSnapshot = await getDocs(commentsRef);
   
@@ -35,5 +35,21 @@ export const getFirestoreData = async (articleId: string) => {
   } else {
     console.log('No comments found for this article');
     return [];
+  }
+}
+
+export const postComment = async (articleId: string, author: string, content: string) => {
+  try {
+    const commentsRef = collection(db, 'blog', articleId, 'comments');
+    const newComment = await addDoc(commentsRef, {
+      author,
+      content,
+      createdAt: serverTimestamp()
+    });
+    console.log('Comment added with ID:', newComment.id);
+    return newComment.id;
+  } catch (error) {
+    console.error('Error adding comment:', error);
+    throw error;
   }
 }
