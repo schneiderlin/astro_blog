@@ -55,11 +55,6 @@ export default function Comment({ articleId }: CommentProps) {
 		fetchComments();
 	}, []);
 
-	// Handle if the user is not signed in
-	if (!userId) {
-		return <p className="text-center text-gray-600">You need to sign in with Clerk to access this page.</p>
-	}
-
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!newComment.trim() || !user) return;
@@ -92,18 +87,24 @@ export default function Comment({ articleId }: CommentProps) {
 				))}
 			</ul>
 
-			{/* New comment form */}
-			<form className="mt-6" onSubmit={handleSubmit}>
-				<Textarea
-					placeholder="Write a comment..."
-					className="w-full p-2 border rounded-md"
-					value={newComment}
-					onChange={(e) => setNewComment(e.target.value)}
-				/>
-				<Button type="submit" className="mt-2">
-					Post Comment
-				</Button>
-			</form>
+			{/* New comment form - only show if user is logged in */}
+			{userId ? (
+				<form className="mt-6" onSubmit={handleSubmit}>
+					<Textarea
+						placeholder="Write a comment..."
+						className="w-full p-2 border rounded-md"
+						value={newComment}
+						onChange={(e) => setNewComment(e.target.value)}
+					/>
+					<Button type="submit" className="mt-2">
+						Post Comment
+					</Button>
+				</form>
+			) : (
+				<p className="mt-6 text-center text-gray-600">
+					Please sign in to post a comment.
+				</p>
+			)}
 		</div>
 	)
 }
