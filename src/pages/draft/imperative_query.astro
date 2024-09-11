@@ -1,0 +1,166 @@
+---
+---
+
+so what is logseq query, logseq have simple query and advanced query.
+today we will learn about how to use advanced query.
+
+the query language is datascript, or datalog, datascript is an implementation of datalog.
+
+in order to query logseq, we first see how logseq store it's data.
+for example a block
+
+## database
+this represent a block
+:block/id 1
+:block/content "some thing"
+
+there are many blocks in a graph. you can imagine a table with two columns, the first is id, the second is attribute, and the third is the value of that attribute.
+
+for example, a block with id 1, has the content "some thing"
+and a block with id 2, has the content "some thing2"
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/content | "some thing2"
+
+but blocks are not just content, block can have marker like TODO, DONE, LATER.
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/content | "some thing2"
+2  | :block/marker | "TODO"
+
+in this example, we can see that block 2 has a marker, which is TODO, but block 1 has no marker.
+
+beside marker, block is reside in a page. for example, block 1 is reside in a page with id 3, and block 2 is reside in a page with id 4.
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/content | "some thing2"
+2  | :block/marker | "TODO"
+1  | :block/page | 3
+2  | :block/page | 4
+
+notice that the value for attribute :block/page is an ID. it is like an link between entity.
+TODO: draw entity as circle, attributes inside the circle, and the link as arrow.
+
+and page have name
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/content | "some thing2"
+2  | :block/marker | "TODO"
+1  | :block/page | 3
+2  | :block/page | 4
+3  | :block/name | "page1"
+4  | :block/name | "page2"
+
+there are other attributes, for example :block/properties, it store the properties of a block. or :block/journal?, it store whether this block is a journal page.
+
+## basic query, matching clause
+now we can write query for this example database.
+
+```clojure
+[:find ?e
+ :where [?e :block/content "some thing"]]
+```
+this query says, find all the ?e.
+then what is ?e?, ?e is the things that match the following pattern in where clause.
+
+a clause is also a triple, it has [id attribute value].
+let's run through this pattern to every datom in the database.
+
+first we have 
+[?e :block/content "some thing"]
+[1 :block/content "some thing"]
+
+the :block/content is the same, and the value "some thing" is also the same.
+and ?e is a little bit tricky, because it can match anything, now it match. so we keep a note, when ?e = 1, it match.
+
+then we check the next datom.
+[?e :block/content "some thing"]
+[2 :block/content "some thing2"]
+
+the :block/content is the same, but the value is different, no match in this case. continue to next datom.
+[?e :block/content "some thing"]
+[2 :block/marker "TODO"]
+
+the atrribute is not the same, no match in this case. continue to next datom...
+
+after running through all datom in the database, we found that only ?e = 1 is match.
+so the result of this query is 1.
+
+## multiple matches
+sometime their will be multiple matches. for example a database like this
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/content | "some thing2"
+3  | :block/content | "some thing"
+
+both block 1 and block 3 has the same content "some thing".
+so the query result for 
+```clojure
+[:find ?e
+ :where [?e :block/content "some thing"]]
+```
+is 1 and 3.
+
+you can read the query as "find all the ?e that the :block/content attribute value is "some thing"
+
+## multiple clauses
+
+we can also add more where clause to the query. for example, we want to find the block that has the content "some thing" and the marker "TODO".
+
+```clojure
+[:find ?e
+ :where [?e :block/content "some thing"]
+        [?e :block/marker "TODO"]]
+```
+
+we need to match each clause with all the datom in the database.
+if we run this query in database
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+1  | :block/marker | "TODO"
+
+for the first clause, when ?e = 1, it match [1 :block/content "some thing"].
+for the second clause, when ?e = 1, it match [1 :block/marker "TODO"].
+
+when ?e = 1, both clause matched, so the result of this query is 1.
+
+but consider this case
+
+id | attribute | value
+---|-----------|-------
+1  | :block/content | "some thing"
+2  | :block/marker | "TODO"
+
+for the first clause, when ?e = 1, it match [1 :block/content "some thing"].
+for the second clause, when ?e = 2, it match [2 :block/marker "TODO"].
+
+although both clause matched, but doesn't exist an ?e that can match both clause, ?e can not be 1 and 2 at the same time. so this query will return an empty result.
+
+so multiple clause is a conjunction (AND), it need to match all the clause to return a result.
+they query can be read as "find all the ?e that the :block/content attribute value is "some thing" AND the :block/marker attribute value is "TODO""
+
+## multiple variables
+now we have build the intuition of query, let's first look at this query
+```clojure
+[:find ?e ?m
+ :where [?e :block/content "some thing"]
+        [?e :block/marker ?m]]
+```
+
+this query is looking for a pattern that some block with id ?e with content "some thing".
+and the same block (because the id is the same ?e in second clause) with marker ?m.
+and needs to return both ?e and ?m.
+
+we can use the same variable in different clause to say that these clauses are connected.
+TODO: draw ?e

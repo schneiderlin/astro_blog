@@ -62,7 +62,7 @@ export default function Comment({ articleId }: CommentProps) {
 		try {
 			await postComment(articleId, user.username || "Anonymous", newComment);
 			setNewComment("");
-			await fetchComments(); // Reload comments after posting
+			await fetchComments();
 		} catch (error) {
 			console.error('Error posting comment:', error);
 		}

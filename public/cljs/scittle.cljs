@@ -41,11 +41,47 @@
     [:div {:style {:height "400px" :width "100%"}
            :ref ref}]))
 
+(defn wrap-script [{:keys [url]} & children]
+  (let [ref (use-script {:url url})]
+    [:div {:ref ref}]))
+
+(defn- get-tag [hiccup]
+  (if (vector? hiccup)
+    (let [[tag attrs & children] hiccup]
+      tag)
+    nil))
+
+;; not necessary has options
+(defn- get-attr [hiccup]
+  (if (vector? hiccup)
+    (let [[tag attrs & children] hiccup]
+      attrs)
+    nil))
+
+(defn- get-children [hiccup]
+  (if (vector? hiccup)
+    (let [[tag attrs & children] hiccup]
+      children)
+    nil))
+
+(defn wrap-script1 [{:keys [url] :as props} & children]
+  (println "props" props)
+  (println "children" children)
+  (let [ref (use-script {:url url})]
+    (if (nil? children)
+      [:div {:ref ref}]
+      (let [first-child (first children)
+            first-tag (get-tag first-child)
+            new-attrs (assoc (get-attr first-child) :ref ref)
+            new-first-child [first-tag new-attrs (get-children first-child)]]
+        (into [new-first-child] (rest children))))))
+
 (defn my-component [] 
   [:div
    [:f> vega-component]
+  ;;  [:f> wrap-script {:url "https://cdn.jsdelivr.net/npm/vega@5.20.2"}]
+   [:f> wrap-script1 {:url "https://cdn.jsdelivr.net/npm/vega@5.20.2"} [:p "hello"]]
    [:f> echart-comoponent]
-   [:h1 {:ref (fn [el] (println "h1" el))} "Scittle"]
    [:f> my-stateful-component]
    [(fn [{:keys [initial-value
                  background-color]}]
