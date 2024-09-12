@@ -1,37 +1,41 @@
 ---
-title: Interactive
+title: Exploring Interactivity in Astro
 author: linzihao
 date: "2024-09-12"
 lang: "en"
-tags: []
-description: ""
+tags: ["astro"]
+description: "Discovering the interactive capabilities of Astro-powered websites using MDX"
 ---
 import { Alert, AlertTitle, AlertDescription } from '@components/ui/alert';
 import Counter from "@/components/Counter";
 import Reagent from "@/components/Reagent.astro";
 
-## interactive
+## Interactivity
 
-let's see how interactive this website can be?
+How interactive can we make this website? Let's explore the possibilities!
 
-I write my blog using astro, as in [blog setup](/blog/zh/astro_blog). the content is written in md or mdx, and rendered by astro.
-in mdx, I can write html, and use react component.
+I've built this blog using Astro, as detailed in my [blog setup guide](/blog/zh/astro_blog). 
+The content is written in Markdown or MDX, which Astro then renders. MDX allows me to incorporate HTML and React components directly into my content, 
+opening up a world of interactive possibilities.
 
-### html
-for example, I can write some html
+### HTML
+
+With MDX, I can seamlessly integrate HTML into my content. Here's a simple example:
+
 ```html
 <div>
-    <h1>hello</h1>
-    <h2>hello</h2>
-    <h3>hello</h3>
+    <h1>Hello there!</h1>
+    <h2>Welcome to my interactive playground</h2>
+    <a id="example_anchor"></a>
+    <h3>Let's explore together</h3>
 </div>
 ```
 
 <div>
-    <h1>hello</h1>
-    <h2>hello</h2>
-    <a id="example_a"></a>
-    <h3>hello</h3>
+    <h1>Hello there!</h1>
+    <h2>Welcome to my interactive playground</h2>
+    <a id="example_anchor"></a>
+    <h3>Let's explore together</h3>
 </div>
 
 ### react component
@@ -95,3 +99,25 @@ these clojure code
 <Reagent>
     [:div "hello"]
 </Reagent>
+
+Currently, this is implemented by writing an Astro component. 
+In that component, I import Scittle (for executing ClojureScript in the browser) and create some HTML elements: a textarea and buttons.
+The ClojureScript code retrieves the user input from the textarea and renders it using Reagent (a React wrapper for ClojureScript).
+
+```clojure
+(require '[reagent.core :as r]
+         '[reagent.dom :as rdom])
+
+(def app (.getElementById js/document "app"))
+(def code (.getElementById js/document "clojure_code"))
+(def button (.getElementById js/document "re_render_button"))
+
+(.addEventListener button "click"
+                   (fn []
+                     (let [code (.-value code)
+                           form (read-string code)
+                           _ (println form)] 
+                       (rdom/render form (.getElementById js/document "app")))))
+```
+
+there is a problem in the current implementation, I can't have two clojure component in one page. because the element ids are hardcoded.
