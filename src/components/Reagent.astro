@@ -1,0 +1,33 @@
+---
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
+const rawSlot = await Astro.slots.render('default');
+const slot = rawSlot.replace(/<\/?p>/g, '')
+    .replace(/“/g, '"')
+    .replace(/”/g, '"');
+---
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/scittle@0.6.17/dist/scittle.js" type="application/javascript"></script>
+<script is:inline src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script is:inline src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/scittle@0.6.17/dist/scittle.reagent.js" type="application/javascript"></script>
+
+<div class="min-w-full space-y-4">
+    <Textarea id="clojure_code" />
+    <div class="flex space-x-2">
+        <Button id="re_render_button" >Re-render</Button>
+        <Button id="reset_button" >Reset</Button>
+    </div>
+    <div id="app" class="mt-4 p-4 border border-gray-300 rounded-md"></div>
+</div>
+
+<script is:inline define:vars={{slot}}>
+    document.getElementById('clojure_code').value = slot;
+    console.log(slot);
+    document.getElementById('reset_button').addEventListener('click', function() {
+        document.getElementById('clojure_code').value = slot;
+    });
+</script>
+
+<script is:inline src="/cljs/reagent_component.cljs" type="application/x-scittle"></script>
