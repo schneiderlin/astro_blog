@@ -4,6 +4,7 @@ dist/
 .astro/
 .clj-kondo/
 .lsp/
+.calva
 
 # dependencies
 node_modules/

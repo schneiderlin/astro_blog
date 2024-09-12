@@ -14,22 +14,27 @@
        {:on-click #(set-count inc)}
        "Click"]]))
 
-(defn use-script [{:keys [url code]}]
+(defn use-script [{:keys [urls codes]}]
   (let [ref (js/React.useRef)
         _ (js/React.useEffect
            (fn []
              (when (.-current ref)
-               (let [script (js/document.createElement "script")]
-                 (when url
+               (let [url-scripts (map (fn [_x]
+                                        (js/document.createElement "script")) urls)
+                     code-scripts (map (fn [_x]
+                                         (js/document.createElement "script")) codes)]
+                 (doseq [[script url] (map vector url-scripts urls)] 
                    (.setAttribute script "src" url)
-                   (.setAttribute script "type" "application/javascript"))
-                 (when code
+                   (.setAttribute script "type" "application/javascript")
+                   (.appendChild (.-current ref) script))
+                 (doseq [[script code] (map vector code-scripts codes)]
                    (set! (.-textContent script) code)
-                   (.setAttribute script "type" "application/javascript"))
-                 (.appendChild (.-current ref) script)
+                   (.setAttribute script "type" "application/javascript")
+                   (.appendChild (.-current ref) script))
                  (fn []
-                   (.removeChild (.-current ref) script)))))
-           [url code ref])]
+                   (doseq [script (concat url-scripts code-scripts)]
+                     (.removeChild (.-current ref) script))))))
+           [urls codes ref])]
     ref))
 
 (defn vega-component []
@@ -47,53 +52,52 @@
 
 (defn- get-tag [hiccup]
   (if (vector? hiccup)
-    (let [[tag attrs & children] hiccup]
-      tag)
-    nil))
+    (if (map? (second hiccup))
+      (let [[tag attrs & children] hiccup]
+        tag)
+      (let [[tag & children] hiccup]
+        tag))
+    (do 
+      (println "not a vector? " hiccup)
+      nil)))
 
 ;; not necessary has options
 (defn- get-attr [hiccup]
   (if (vector? hiccup)
-    (let [[tag attrs & children] hiccup]
-      attrs)
+    (if (map? (second hiccup))
+      (let [[tag attrs & children] hiccup]
+        attrs)
+      (let [[tag & children] hiccup]
+        {}))
     nil))
 
 (defn- get-children [hiccup]
   (if (vector? hiccup)
-    (let [[tag attrs & children] hiccup]
-      children)
+    (if (map? (second hiccup))
+      (let [[tag attrs & children] hiccup]
+        children)
+      (let [[tag & children] hiccup]
+        children))
     nil))
 
-(defn wrap-script1 [{:keys [url] :as props} & children]
-  (println "props" props)
-  (println "children" children)
-  (let [ref (use-script {:url url})]
-    (if (nil? children)
-      [:div {:ref ref}]
-      (let [first-child (first children)
-            first-tag (get-tag first-child)
-            new-attrs (assoc (get-attr first-child) :ref ref)
-            new-first-child [first-tag new-attrs (get-children first-child)]]
-        (into [new-first-child] (rest children))))))
+(defn wrap-script 
+  "given a hiccup form, add script tags to the root"
+  [{:keys [urls codes] :as props} & children] 
+  (let [ref (use-script {:urls urls :codes codes})
+        child (first children)]
+    (if (nil? child)
+      [:div {:ref ref}] 
+      (let [tag (get-tag child)
+            new-attrs (assoc (get-attr child) :ref ref)
+            new-child [tag new-attrs (get-children child)]]
+        new-child))))
 
 (defn my-component [] 
   [:div
-   [:f> vega-component]
-  ;;  [:f> wrap-script {:url "https://cdn.jsdelivr.net/npm/vega@5.20.2"}]
-   [:f> wrap-script1 {:url "https://cdn.jsdelivr.net/npm/vega@5.20.2"} [:p "hello"]]
-   [:f> echart-comoponent]
-   [:f> my-stateful-component]
-   [(fn [{:keys [initial-value
-                 background-color]}]
-      (let [*click-count (reagent.core/atom initial-value)]
-        (fn []
-          [:div {:style {:background-color background-color}}
-           "The atom " [:code "*click-count"] " has value: "
-           @*click-count ". "
-           [:input {:type "button" :value "Click me!"
-                    :on-click #(swap! *click-count inc)}]])))
-    {:initial-value 9
-     :background-color "#d4ebe9"}]])
+   [:f> wrap-script {:urls ["https://cdn.jsdelivr.net/npm/vega@5.20.2"
+                            "https://cdn.jsdelivr.net/npm/vega@5.20.1"]
+                     :codes ["console.log('from here')"]}
+    [:div "hello"]]])
 
 
 (rdom/render [:f> my-component] (.getElementById js/document "app"))
