@@ -1,21 +1,87 @@
 ---
 ---
-
-it just scittle. I can defer all the lib to client side.
-<!-- or I can import something like react? don't know how  -->
-
 <script is:inline src="https://cdn.jsdelivr.net/npm/scittle@0.6.17/dist/scittle.js" type="application/javascript"></script>
 <script is:inline src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<!-- reagent -->
+<!-- <script is:inline src="https://unpkg.com/react@18/umd/react.production.min.js"></script> -->
 <script is:inline src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 <script is:inline src="https://cdn.jsdelivr.net/npm/scittle@0.6.17/dist/scittle.reagent.js" type="application/javascript"></script>
+<script is:inline src="/cljs/scittle.cljs" type="application/x-scittle"></script>
+
+<!-- echarts -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+
+<!-- highcharts -->
+<script is:inline src="https://code.highcharts.com/highcharts.js"></script>
+
+<!-- vega -->
 <script is:inline src="https://unpkg.com/vega@5.25.0"></script>
 <script is:inline src="https://unpkg.com/vega-lite@5.16.3"></script>
 <script is:inline src="https://unpkg.com/vega-embed@6.22.2"></script>
-<script is:inline src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
-<script is:inline src="/cljs/scittle.cljs" type="application/x-scittle"></script>
 
-<!-- only for repl -->
-<script>var SCITTLE_NREPL_WEBSOCKET_PORT = 1340;</script>
-<script is:inline src="https://cdn.jsdelivr.net/npm/scittle@0.6.17/dist/scittle.nrepl.js" type="application/javascript"></script>
+<!-- datatable -->
+<!-- jquery not defined? -->
+<!-- <script is:inline src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"> -->
 
+<!-- cytoscape -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+
+<!-- plotly -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.20.0/plotly.min.js"></script>
+
+<!-- katex -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"> 
+<script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+
+<!-- three-d-mol -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/1.5.3/3Dmol.min.js"></script>
+
+<!-- leaflet -->
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/leaflet-providers@2.0.0/leaflet-providers.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    
+<!-- tmdjs -->
+<!-- <script is:inline src="https://scicloj.github.io/scittle/js/scittle.tmdjs.js"></script> -->
+
+<!-- emmy -->
+<!-- <script is:inline src="https://scicloj.github.io/scittle/js/scittle.emmy.js"></script> -->
+
+<!-- mathbox -->
+<!-- <script is:inline src="https://scicloj.github.io/scittle/js/scittle.mathbox.js"></script> -->
+
+
+<!-- portal -->
+<script is:inline src="https://scicloj.github.io/scittle/js/scittle.portal.js"></script>
+
+<!-- d3 -->
+<script is:inline src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+<!-- html-default -->
+<script is:inline src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script is:inline src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+<!-- md-default -->
+<script is:inline src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script is:inline src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+
+
+<!-- :htmlwidgets-ggplotly {:js {:from-local-copy-of-repo
+                    [{:gh-repo "scicloj/ggplotly-deps"
+                      :relative-path "lib"
+                      :paths ["htmlwidgets-1.6.2/htmlwidgets.js"
+                              "plotly-binding-4.10.4.9000/plotly.js"
+                              "typedarray-0.1/typedarray.min.js"
+                              "jquery-3.5.1/jquery.min.js"
+                              "crosstalk-1.2.1/js/crosstalk.min.js"
+                              "plotly-main-2.11.1/plotly-latest.min.js"]}]}
+               :css {:from-local-copy-of-repo
+                     [{:gh-repo "scicloj/ggplotly-deps"
+                       :relative-path "lib"
+                       :paths ["crosstalk-1.2.1/css/crosstalk.min.css"
+                               "plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css"]}]}} -->
+
+<!-- <script is:inline type="application/x-scittle">(println " from scittle ")</script> -->
 <div id="app"></div>
