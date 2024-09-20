@@ -1,0 +1,28 @@
+---
+layout: '@layouts/BlogPostLayout.astro'
+title: AI overview
+---
+
+this is the overview page, AI can do a lot of stuff, and required a lot of knowledge.
+
+don't hold AI at hand and looking for problems to solve, instead find problem first and try to solve it using AI.
+
+## model I am using
+using llama3 in ollama, run on local 4090. 
+claude 3.5 sonnet using cursor.
+
+## tools and libraries
+[Oobabooga's Web UI](/ai/oobabooga) for text generation. \
+[Bosquet](/ai/bosquet) for local LLM interaction. \
+[Cursor](/ai/cursor) for codebase understanding.
+
+## LLM 
+all LLM can do is just continue writing at the end of sentence. it is important to know how to prompt are structured, 
+how LLM fetch context from the outside world. there are many SaaS for doing RAG, or agent, or tool calling. these thing are not very technical advance,
+just cleaver, so once find reference, it is easy to build a copy, at least for personal use.
+by knowing the prompt, I can further customize.
+
+being able to see the raw request send to LLM is crucial, some library hide the construction process.
+using clojure, there is no need for framework like langchain, to gue many diffrent aspect of LLM together, clojure language itself is the best gue.
+
+a good prompt template should be easy to mix code and data, and can also easily manipulate using code like hiccup.

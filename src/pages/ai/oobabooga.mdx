@@ -1,0 +1,55 @@
+---
+layout: '@layouts/BlogPostLayout.astro'
+title: oobabooga
+---
+
+import { Image } from 'astro:assets';
+import image1 from "../../assets/oobabooga/2024-09-20-11-01-08.png"
+
+## usage
+just chat with AI, using local model. 
+can have uncensored conversation, for productive usage, recommand cursor. 
+
+## install
+just git clone the repo.
+it use miniconda to manage the python environment.
+
+`cmd_xx` files for example `cmd_windows.bat` is for activate the conda env.
+can be use to activate env and then install dependencies for extensions
+```bash
+pip install -r extensions/silero_tts/requirements.txt
+```
+
+`start_xx` files for starting the web service.
+
+## download model
+
+easily download huggingface model
+<Image src={image1} alt="download model" />
+
+just select model name and load, no need to change the model loader, can infer most of the time.
+
+## extensions
+build in extensions in 
+https://github.com/oobabooga/text-generation-webui/blob/f98431c7448381bfa4e859ace70e0379f6431018/docs/07%20-%20Extensions.md
+
+build in extensions in /extensions folder, but just the code, no python library installed. need to activate env and install.
+```bash
+pip install -r extensions/silero_tts/requirements.txt
+```
+
+### silero TTS
+free and local.
+currently using English, en_97 voice. not bad, but can easily tell it is machine voice.
+
+it first generate the text, then do TTS, so longer text will have noticable lagging.
+
+### elevenlabs TTS
+
+### whisper STT
+free and local.
+currently using small.en model, seems to be enough.
+
+## notebook 
+write instruction first, then use generate to complete the rest of text.
+it can only continue writing in the end, can not edit the middle or add to the middle.
