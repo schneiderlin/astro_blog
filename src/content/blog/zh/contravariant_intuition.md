@@ -9,11 +9,11 @@ description: An exploration of contravariant functors in functional programming,
 
 ## contravariant
 contravariant是一个定义了contramap函数的functor
-```
+```scala
 def contramap[A, B](fa: F[A])(f: B => A): F[B]
 ```
 可以发现这跟普通的map很像，就是f函数相反了
-```
+```scala
 def map[A, B](fa: F[A])(f: A => B): F[B]
 ```
 因此叫contramap，平时所说的定义了map的functor可以叫covariant functor，定义了contramap的是contravariant functor
@@ -30,7 +30,7 @@ contravariant的例子有Show和scala.math.Ordering。
 > 一天，数学家觉得自己已受够了数学，于是他跑到消防队去宣布他想当消防员。消防队长说：“您看上去不错，可是我得先给您一个测试。”消防队长带数学家到消防队后院小巷，巷子里有一个货栈，一只消防栓和一卷软管。消防队长问：“假设货栈起火，您怎么办？”数学家回答：“我把消防栓接到软管上，打开水龙，把火浇灭。”消防队长说：“完全正确！最后一个问题：假设您走进小巷，而货栈没有起火，您怎么办？”数学家疑惑地思索了半天，终于答道：“我就把货栈点着。”消防队长大叫起来：“什么？太可怕了！您为什么要把货栈点着？”数学家回答：“这样我就把问题化简为一个我已经解决过的问题了。”
 
 再看一个Show的例子
-```
+```scala
 case class Money(amount: Int)
 case class Salary(size: Money)
 
@@ -43,7 +43,7 @@ implicit val showSalary: Show[Salary] = showMoney.contramap(_.size)
 
 ### contramap的应用
 scala.math.Ordering中已经有contramap了
-```
+```scala
 def by[T, S](f: T => S)(implicit ord: Ordering[S]): Ordering[T]
 ```
 这里的by，其实就是contramap
@@ -65,7 +65,7 @@ A可以看作是全人类，B可以看作是某一类人。
 again，F[B]可以看成是关于类型B的解决方案，Show[B]是解决如何print B，Ordering[B]是如何对B排序...
 
 实现方法非常简单
-```
+```scala
 class A
 class B extends A
 
