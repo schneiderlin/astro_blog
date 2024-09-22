@@ -1,7 +1,11 @@
 ---
+import '@/styles/globals.css'
 import YooptaEditor from "../../components/YooptaEditor";
 import NovelEditor from "../../components/novel/NovelEditor";
 ---
 
 <!-- <YooptaEditor client:only="react" /> -->
 <NovelEditor client:only="react" />
+
+<!-- can't delete this, because otherwise no tailwind css in NovelEditor -->
+<div class="bg-red-500"></div>
