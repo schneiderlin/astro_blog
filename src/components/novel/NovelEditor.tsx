@@ -1,13 +1,24 @@
 import { EditorCommand, EditorCommandEmpty, EditorCommandItem, EditorCommandList, EditorContent, EditorRoot } from "novel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import defaultExtensions from "../novel/extensions";
 import { slashCommand, suggestionItems } from "./slash";
 import { handleCommandNavigation } from "novel/extensions";
 
 const extensions = [...defaultExtensions, slashCommand];
 
-const TailwindEditor = () => {
-  const [content, setContent] = useState(null);
+interface TailwindEditorProps {
+  initialContent?: any;
+  onContentChange?: (content: any) => void;
+}
+
+const TailwindEditor: React.FC<TailwindEditorProps> = ({ initialContent, onContentChange }) => {
+  const [content, setContent] = useState(initialContent);
+
+  useEffect(() => {
+    if (onContentChange) {
+      onContentChange(content);
+    }
+  }, [content, onContentChange]);
 
   return (
     <EditorRoot>
@@ -23,9 +34,9 @@ const TailwindEditor = () => {
             keydown: (_view, event) => handleCommandNavigation(event),
           },
           attributes: {
-            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+            class: `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full border border-gray-300 dark:border-gray-700 rounded-md p-4`,
           }
-      }}
+        }}
       >
         <EditorCommand className='z-50 h-auto max-h-[330px]  w-72 overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all'>
           <EditorCommandEmpty className='px-2 text-muted-foreground'>No results</EditorCommandEmpty>
@@ -51,4 +62,5 @@ const TailwindEditor = () => {
     </EditorRoot>
   );
 };
+
 export default TailwindEditor;
