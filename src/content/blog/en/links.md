@@ -28,3 +28,13 @@ no need to comment on the structure and wordings, focus on the main idea.
 do you have any dissagreements?
 ```
 
+randomly chat with AI can provide writing ideas.
+
+## Things I like to write about
+- LLM generate narrative, many branch, human pruning
+- open source projects, tutorials or rationales
+    - how logseq implement link
+- my tech choices
+- argue no intellectual type
+- outline for all my tech skills, it is also checkpoints, useful for context switching
+- reverse goal setting
