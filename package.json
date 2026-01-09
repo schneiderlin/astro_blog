@@ -24,7 +24,6 @@
     "@heroicons/react": "^1.0.6",
     "@iconify-json/mdi": "^1.1.68",
     "@iconify-json/simple-icons": "^1.1.115",
-    "@libsql/client": "^0.7.0",
     "@nanostores/react": "^0.7.3",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-dialog": "^1.1.1",

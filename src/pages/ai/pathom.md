@@ -13,10 +13,10 @@ then I can tell if a city is hot, by composing these 2 functions.
 in pathom, you don't need to define a third function that is the composition of the two functions.
 just put these 2 functions in an `environment`, it is called resolver in pathom parlance, pathom can derive base on the inputs and outputs of each resolver.
 
-![](2024-09-19-10-24-29.png)
+<!-- ![](2024-09-19-10-24-29.png) -->
 
 you can now tell the `environment`, I have a city name, is this city hot?
-![](2024-09-19-10-30-25.png)
+<!-- ![](2024-09-19-10-30-25.png) -->
 
 not need to know the intermedia node, that is abstraction.
 get many things for free.
@@ -34,14 +34,14 @@ which and what complect, client only say which, not what
 
 just use clojure def, defn, if for all the manipulation. no need for special syntax
 
-![alt text](image.png)
+<!-- ![alt text](image.png) -->
 GQL 是 top down, EQL 是 bottom up.
 GQL 每个遇到的节点都要 resolve, EQL 只是 set 一下 context, 后面不一定用
 
-![alt text](image-1.png)
+<!-- ![alt text](image-1.png) -->
 更加 loose, entity 之间是没有关联的, 是 resolver 使得他们关联
 
-![alt text](image-2.png)
+<!-- ![alt text](image-2.png) -->
 GQL 无法表达这个, 只能在 customer 下面显示 customer/name
 GQL like tree, EQL like graph. 
 in implementation time, GQL is one way. EQL just specify all the node and edge, dynamic.
